@@ -1,0 +1,358 @@
+/* ==========================================================================
+   RTL (Right-to-Left) Layout Overrides for Bootstrap 3.3.5
+   Applied when html[dir="rtl"] is set
+   ========================================================================== */
+
+/* ---------- General text and direction ---------- */
+html[dir="rtl"] body {
+  text-align: right;
+  direction: rtl;
+}
+
+/* ---------- Grid system: flip floats ---------- */
+html[dir="rtl"] .col-xs-1, html[dir="rtl"] .col-xs-2, html[dir="rtl"] .col-xs-3,
+html[dir="rtl"] .col-xs-4, html[dir="rtl"] .col-xs-5, html[dir="rtl"] .col-xs-6,
+html[dir="rtl"] .col-xs-7, html[dir="rtl"] .col-xs-8, html[dir="rtl"] .col-xs-9,
+html[dir="rtl"] .col-xs-10, html[dir="rtl"] .col-xs-11, html[dir="rtl"] .col-xs-12,
+html[dir="rtl"] .col-sm-1, html[dir="rtl"] .col-sm-2, html[dir="rtl"] .col-sm-3,
+html[dir="rtl"] .col-sm-4, html[dir="rtl"] .col-sm-5, html[dir="rtl"] .col-sm-6,
+html[dir="rtl"] .col-sm-7, html[dir="rtl"] .col-sm-8, html[dir="rtl"] .col-sm-9,
+html[dir="rtl"] .col-sm-10, html[dir="rtl"] .col-sm-11, html[dir="rtl"] .col-sm-12,
+html[dir="rtl"] .col-md-1, html[dir="rtl"] .col-md-2, html[dir="rtl"] .col-md-3,
+html[dir="rtl"] .col-md-4, html[dir="rtl"] .col-md-5, html[dir="rtl"] .col-md-6,
+html[dir="rtl"] .col-md-7, html[dir="rtl"] .col-md-8, html[dir="rtl"] .col-md-9,
+html[dir="rtl"] .col-md-10, html[dir="rtl"] .col-md-11, html[dir="rtl"] .col-md-12,
+html[dir="rtl"] .col-lg-1, html[dir="rtl"] .col-lg-2, html[dir="rtl"] .col-lg-3,
+html[dir="rtl"] .col-lg-4, html[dir="rtl"] .col-lg-5, html[dir="rtl"] .col-lg-6,
+html[dir="rtl"] .col-lg-7, html[dir="rtl"] .col-lg-8, html[dir="rtl"] .col-lg-9,
+html[dir="rtl"] .col-lg-10, html[dir="rtl"] .col-lg-11, html[dir="rtl"] .col-lg-12 {
+  float: right;
+}
+
+/* ---------- Grid offsets: swap left/right ---------- */
+html[dir="rtl"] .col-xs-offset-1 { margin-right: 8.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-2 { margin-right: 16.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-3 { margin-right: 25%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-4 { margin-right: 33.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-5 { margin-right: 41.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-6 { margin-right: 50%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-7 { margin-right: 58.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-8 { margin-right: 66.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-9 { margin-right: 75%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-10 { margin-right: 83.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-xs-offset-11 { margin-right: 91.66666667%; margin-left: 0; }
+
+html[dir="rtl"] .col-sm-offset-1 { margin-right: 8.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-2 { margin-right: 16.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-3 { margin-right: 25%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-4 { margin-right: 33.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-5 { margin-right: 41.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-6 { margin-right: 50%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-7 { margin-right: 58.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-8 { margin-right: 66.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-9 { margin-right: 75%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-10 { margin-right: 83.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-sm-offset-11 { margin-right: 91.66666667%; margin-left: 0; }
+
+html[dir="rtl"] .col-md-offset-1 { margin-right: 8.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-2 { margin-right: 16.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-3 { margin-right: 25%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-4 { margin-right: 33.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-5 { margin-right: 41.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-6 { margin-right: 50%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-7 { margin-right: 58.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-8 { margin-right: 66.66666667%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-9 { margin-right: 75%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-10 { margin-right: 83.33333333%; margin-left: 0; }
+html[dir="rtl"] .col-md-offset-11 { margin-right: 91.66666667%; margin-left: 0; }
+
+/* ---------- Grid pull/push: swap ---------- */
+html[dir="rtl"] .col-xs-pull-1 { left: auto; right: 8.33333333%; }
+html[dir="rtl"] .col-xs-pull-2 { left: auto; right: 16.66666667%; }
+html[dir="rtl"] .col-xs-pull-3 { left: auto; right: 25%; }
+html[dir="rtl"] .col-xs-pull-4 { left: auto; right: 33.33333333%; }
+html[dir="rtl"] .col-xs-pull-5 { left: auto; right: 41.66666667%; }
+html[dir="rtl"] .col-xs-pull-6 { left: auto; right: 50%; }
+html[dir="rtl"] .col-xs-push-1 { right: auto; left: 8.33333333%; }
+html[dir="rtl"] .col-xs-push-2 { right: auto; left: 16.66666667%; }
+html[dir="rtl"] .col-xs-push-3 { right: auto; left: 25%; }
+html[dir="rtl"] .col-xs-push-4 { right: auto; left: 33.33333333%; }
+html[dir="rtl"] .col-xs-push-5 { right: auto; left: 41.66666667%; }
+html[dir="rtl"] .col-xs-push-6 { right: auto; left: 50%; }
+
+/* ---------- Forms ---------- */
+html[dir="rtl"] .form-control {
+  text-align: right;
+}
+
+html[dir="rtl"] .form-horizontal .control-label {
+  text-align: left;
+}
+
+html[dir="rtl"] .form-control[readonly] {
+  text-align: right;
+}
+
+html[dir="rtl"] .radio,
+html[dir="rtl"] .checkbox {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .radio label,
+html[dir="rtl"] .checkbox label {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .form-group .help-block,
+html[dir="rtl"] .form-group .control-label {
+  text-align: right;
+}
+
+/* ---------- Input groups ---------- */
+html[dir="rtl"] .input-group .input-group-addon:first-child {
+  border-left: 1px solid #ccc;
+  border-right: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+html[dir="rtl"] .input-group .input-group-addon:last-child {
+  border-right: 1px solid #ccc;
+  border-left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+html[dir="rtl"] .input-group .form-control:first-child {
+  border-radius: 0 4px 4px 0;
+}
+
+html[dir="rtl"] .input-group .form-control:last-child {
+  border-radius: 4px 0 0 4px;
+}
+
+html[dir="rtl"] .input-group-addon {
+  padding-left: 16px;
+}
+
+/* ---------- Buttons ---------- */
+html[dir="rtl"] .btn-group > .btn:first-child {
+  border-radius: 0 4px 4px 0;
+}
+
+html[dir="rtl"] .btn-group > .btn:last-child {
+  border-radius: 4px 0 0 4px;
+}
+
+/* ---------- Navbar ---------- */
+html[dir="rtl"] .navbar-header {
+  float: right;
+}
+
+html[dir="rtl"] .navbar-nav {
+  margin-left: 0;
+  margin-right: 20px;
+}
+
+html[dir="rtl"] .navbar-nav > li {
+  float: right;
+}
+
+html[dir="rtl"] .navbar-right {
+  float: left !important;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .navbar-left {
+  float: right !important;
+}
+
+html[dir="rtl"] .navbar-collapse {
+  text-align: unset;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ---------- Navigation & sidebar ---------- */
+html[dir="rtl"] .sidebar-main {
+  right: 0;
+  left: auto;
+}
+
+html[dir="rtl"] .page-container {
+  margin-right: 260px;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .navigation li > a > i {
+  float: right;
+  margin-left: 15px;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .navigation li > a > span {
+  float: right;
+}
+
+html[dir="rtl"] .navigation li.has-ul > a:after {
+  content: '\e9c8';
+  right: auto;
+  left: 20px;
+}
+
+html[dir="rtl"] .nav-tabs > li {
+  float: right;
+}
+
+html[dir="rtl"] .nav-pills > li {
+  float: right;
+}
+
+/* ---------- Tables ---------- */
+html[dir="rtl"] th {
+  text-align: right;
+}
+
+html[dir="rtl"] td {
+  text-align: right;
+}
+
+html[dir="rtl"] .table .checkbox {
+  margin-right: 0;
+}
+
+/* ---------- Dropdowns ---------- */
+html[dir="rtl"] .dropdown-menu {
+  right: 0;
+  left: auto;
+  text-align: right;
+}
+
+html[dir="rtl"] .dropdown-menu-right {
+  right: auto;
+  left: 0;
+}
+
+/* ---------- Modals ---------- */
+html[dir="rtl"] .modal-header .close {
+  float: left;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .modal-footer {
+  text-align: left;
+}
+
+/* ---------- Breadcrumbs ---------- */
+html[dir="rtl"] .breadcrumb-line .breadcrumb {
+  float: right;
+}
+
+html[dir="rtl"] .breadcrumb > li + li:before {
+  content: '\00a0/';
+  padding: 0 5px 0 0;
+}
+
+/* ---------- Panels ---------- */
+html[dir="rtl"] .panel-heading > .panel-title {
+  text-align: right;
+}
+
+html[dir="rtl"] .panel-heading .heading-elements {
+  float: left;
+}
+
+/* ---------- Lists ---------- */
+html[dir="rtl"] .list-group {
+  padding-right: 0;
+}
+
+html[dir="rtl"] .list-inline > li {
+  padding-right: 0;
+  padding-left: 5px;
+}
+
+html[dir="rtl"] ul, html[dir="rtl"] ol {
+  padding-right: 40px;
+  padding-left: 0;
+}
+
+/* ---------- Alerts ---------- */
+html[dir="rtl"] .alert-dismissible {
+  padding-right: 15px;
+  padding-left: 35px;
+}
+
+html[dir="rtl"] .alert-dismissible .close {
+  left: -21px;
+  right: auto;
+}
+
+/* ---------- Progress bars ---------- */
+html[dir="rtl"] .progress-bar {
+  float: right;
+}
+
+/* ---------- Pagination ---------- */
+html[dir="rtl"] .pagination > li:first-child > a,
+html[dir="rtl"] .pagination > li:first-child > span {
+  border-radius: 0 4px 4px 0;
+}
+
+html[dir="rtl"] .pagination > li:last-child > a,
+html[dir="rtl"] .pagination > li:last-child > span {
+  border-radius: 4px 0 0 4px;
+}
+
+/* ---------- Media objects ---------- */
+html[dir="rtl"] .media > .pull-left {
+  margin-left: 10px;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .media > .pull-right {
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+/* ---------- Utility: float & text alignment overrides ---------- */
+html[dir="rtl"] .pull-right {
+  float: left !important;
+}
+
+html[dir="rtl"] .pull-left {
+  float: right !important;
+}
+
+html[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* ---------- Custom openSIS components ---------- */
+html[dir="rtl"] .content-wrapper {
+  margin-right: 260px;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .heading-elements .btn + .btn,
+html[dir="rtl"] .heading-elements .btn-group + .btn-group {
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+html[dir="rtl"] .icon-left {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+html[dir="rtl"] .icon-right {
+  margin-right: 5px;
+  margin-left: 0;
+}

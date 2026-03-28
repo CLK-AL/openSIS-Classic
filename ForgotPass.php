@@ -302,6 +302,9 @@ if(langDirection()=='rtl') { $dir="rtl"; }else{ $dir="ltr"; }
         <link href="assets/css/icons/fontawesome/styles.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+        <?php if(langDirection()=='rtl'){ ?>
+        <link rel="stylesheet" type="text/css" href="assets/css/rtl.css">
+        <?php } ?>
         <script src='js/Ajaxload.js'></script>
         <script src='js/Validation.js'></script>
         <script src='js/Validator.js'></script>

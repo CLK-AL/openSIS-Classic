@@ -60,6 +60,9 @@ $extra_header .= '<link href="assets/css/icons/icomoon/styles.css" rel="styleshe
 $extra_header .= '<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">';
 $extra_header .= '<link href="assets/css/extras/css-checkbox-switch.css" rel="stylesheet">';
 $extra_header .= '<link rel="stylesheet" type="text/css" href="assets/css/login.css">';
+if(langDirection()=='rtl'){
+    $extra_header .= '<link rel="stylesheet" type="text/css" href="assets/css/rtl.css">';
+}
 $extra_header .= '<script type="text/javascript" src="js/Tabmenu.js"></script>';
 $extra_header .= "<script type='text/javascript'>
 	function delete_cookie (cookie_name)
@@ -72,8 +75,6 @@ $extra_header .= "<script type='text/javascript'>
 </script>";
 Warehouse('header', $extra_header);
 require_once('functions/langFnc.php');
-// var_dump(langDirection());
-// var_dump($supportedLanguages[$_SESSION['language']]['direction']);
 ?>
 
 <BODY onLoad="document.loginform.USERNAME.focus();

@@ -110,6 +110,9 @@ if (!isset($_REQUEST['_openSIS_PDF'])) {
     echo '<link href="assets/css/colors.css?v=' . rand(0000, 99999) . '" rel="stylesheet" type="text/css">';
     echo '<link href="assets/css/custom.css?v=' . rand(0000, 99999) . '" rel="stylesheet" type="text/css">';
     echo '<link href="assets/css/extras/css-checkbox-switch.css?v=' . rand(0000, 99999) . '" rel="stylesheet" type="text/css">';
+    if(langDirection()=='rtl'){
+        echo '<link href="assets/css/rtl.css?v=' . rand(0000, 99999) . '" rel="stylesheet" type="text/css">';
+    }
 
     /*
      * Include Javascript Core Files

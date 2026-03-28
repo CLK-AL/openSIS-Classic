@@ -53,6 +53,9 @@ echo '<link href="assets/css/components.css" rel="stylesheet" type="text/css">';
 echo '<link href="assets/css/colors.css" rel="stylesheet" type="text/css">';
 echo '<link href="assets/css/custom.css" rel="stylesheet" type="text/css">';
 echo '<link href="assets/css/extras/css-checkbox-switch.css?v=' . rand(0000, 99999) . '" rel="stylesheet" type="text/css">';
+if(langDirection()=='rtl'){
+    echo '<link href="assets/css/rtl.css" rel="stylesheet" type="text/css">';
+}
 echo "<BODY>";
 echo "<script src='js/Validation.js'></script>";
 echo "<script src='js/Ajaxload.js'></script>";

@@ -1276,9 +1276,6 @@ fieldset[disabled] .form-control {
   box-shadow: none;
   text-align: left;
 }
-html[dir="rtl"] .form-control[readonly] {
-  text-align: right;
-}
 .form-control-unstyled {
   padding: 0;
   border: 0;
@@ -1626,9 +1623,6 @@ select[multiple].input-xs {
 .form-horizontal .control-label[class*=col-md-] {
     overflow-wrap: break-word;
     font-size: 13px;
-}
-html[dir="rtl"] .form-horizontal .control-label {
-  text-align: left;
 }
 @media (min-width: 1025px) {
   .help-inline {
@@ -2750,9 +2744,6 @@ select[multiple].input-group-xs > .input-group-btn > .btn {
   padding-left: 0;
 }
 
-html[dir="rtl"] .input-group-addon {
-  padding-left: 16px;
-}
 
 .input-group-addon:last-child {
   padding-right: 0;
@@ -6113,9 +6104,6 @@ a.thumbnail.active {
   overflow: hidden;
   -webkit-box-shadow: none;
   box-shadow: none;
-}
-html[dir="rtl"] .progress-bar {
-  float: right;
 }
 .progress-rounded,
 .progress-rounded > .progress-bar {

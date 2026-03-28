@@ -14,6 +14,10 @@ if(isset($_REQUEST['language']) && in_array($_REQUEST['language'], array_keys($s
 }
     }
 
+if(!isset($langCode)){
+    $langCode = 'en';
+}
+
 include "lang/lang_".$langCode.".php";
 
     $_SESSION['language'] = $langCode;
