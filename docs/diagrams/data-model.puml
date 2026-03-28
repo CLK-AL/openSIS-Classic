@@ -208,6 +208,31 @@ entity "inventory_birthdays" as bday {
   status : VARCHAR
 }
 
+entity "inventory_donations" as don {
+  * id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  donation_type : VARCHAR
+  donor_name : VARCHAR
+  monetary_value : DECIMAL
+  beneficiary_student_id : INT <<FK>>
+  beneficiary_tag : VARCHAR
+  status : VARCHAR
+}
+
+entity "inventory_student_needs" as needs {
+  * id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  student_id : INT <<FK>>
+  need_type : VARCHAR
+  priority : VARCHAR
+  estimated_cost : DECIMAL
+  funded_amount : DECIMAL
+  funded_by_donation_id : INT <<FK>>
+  status : VARCHAR
+}
+
 schools ||--|{ sy : contains
 schools ||--|{ courses : offers
 courses ||--|{ cp : has periods
@@ -226,5 +251,9 @@ students ||--|{ fin : pays
 students ||--|{ bday : celebrates
 schools ||--|{ trips : organizes
 schools ||--|{ equip : owns
+schools ||--|{ don : receives
+don }o--o| students : benefits
+students ||--|{ needs : has needs
+don ||--o{ needs : funds
 
 @enduml

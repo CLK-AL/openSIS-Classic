@@ -43,6 +43,24 @@ All changes in this fork compared to [OS4ED/openSIS-Classic](https://github.com/
 - Full type mapping (20+ types), compound PK support, Unicode preservation
 - Auto-detects source from Data.php, prints target Data.php config
 
+## Donation Classroom E2E Simulation (New)
+
+- **Added** `tests/SqliteTestDb.php` — SQLite-based test database helper (replaces TsvMock for E2E)
+  - `createSchema()`: creates all 20+ tables needed for full simulation
+  - `seedSchool()`: creates school, staff, students, courses, schedules
+- **Added** `tests/Integration/DonationClassroomTest.php` — 20-test simulation of a complete donation-funded school:
+  - Phase 1: School infrastructure (school, 2 teachers, 1 admin, 66 students in 2 classes of 33)
+  - Phase 2: Library (donated books, checkout/return lifecycle)
+  - Phase 3: Lab equipment (donated equipment with value tracking)
+  - Phase 4: Multiple donation types (cash, books, equipment, clothing, meal program)
+  - Phase 5: Student needs tagging (5 needy students, 3 fulfilled from donations)
+  - Phase 6: Donation-funded field trip (PTA covers full cost)
+  - Phase 7: Finance tracking (income $9,315, expenses $250, net $9,065)
+  - Phase 8: Grading (midterm exam for 33 students with score distribution)
+  - Phase 9: Attendance (5-day week with realistic absence pattern)
+  - Phase 10: Exports (vCard students, iCal field trips with VALARM, VTODO birthdays)
+  - Cross-phase: Donation→Need→Finance→Fulfillment pipeline, i18n storage
+
 ## RTL & Language Support
 
 - **Fixed** missing closing `"` on `dir="ltr"` HTML attribute in `Warehouse.php` (malformed HTML on all LTR pages)

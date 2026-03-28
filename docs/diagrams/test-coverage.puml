@@ -65,6 +65,8 @@ package "Integration Tests" <<Rectangle>> #Gold {
     rectangle "SessionSecurityWorkflow\nAccess control + Roles" as intsess #90EE90
     rectangle "LanguageWorkflow\nLang select + RTL + Files" as intlang #90EE90
     rectangle "DateWorkflow\nMonth conv + Time format" as intdate #90EE90
+    rectangle "DBGetWorkflow\nTSV mock pipeline" as intdbget #90EE90
+    rectangle "DonationClassroom\n20 tests: full school sim\n66 students, donations,\nneeds, finance, grades,\nattendance, exports" as intclass #90EE90
 }
 
 package "DB-Dependent (TSV Mock)" <<Rectangle>> #LightGreen {

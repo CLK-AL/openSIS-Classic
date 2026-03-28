@@ -2,7 +2,7 @@
 
 ## Overview
 
-PHPUnit 11 test suite with **332 tests** and **575 assertions**, plus **62 Playwright E2E browser tests**.
+PHPUnit 11 test suite with **392 tests** and **768 assertions**, plus **62 Playwright E2E browser tests**.
 
 ### Requirements
 
@@ -71,13 +71,15 @@ tests/
 │   ├── UserFncTest.php                        #   8 tests (DB mock)
 │   ├── AllowEditTest.php                      #  14 tests (DB mock)
 │   └── SqliteAdapterTest.php                  #  16 tests (SQLite)
-└── Integration/                               # Multi-component workflow tests (52 tests)
+├── SqliteTestDb.php                           # SQLite-based test DB for E2E sims
+└── Integration/                               # Multi-component workflow tests (72 tests)
     ├── AuthenticationWorkflowTest.php         #   8 tests
     ├── InputValidationWorkflowTest.php        #  16 tests
     ├── SessionSecurityWorkflowTest.php        #  10 tests
     ├── LanguageWorkflowTest.php               #  10 tests
     ├── DateWorkflowTest.php                   #  10 tests
-    └── DBGetWorkflowTest.php                  #  12 tests (TSV mock)
+    ├── DBGetWorkflowTest.php                  #  12 tests (TSV mock)
+    └── DonationClassroomTest.php              #  20 tests (SQLite E2E)
 
 e2e/                                           # Playwright E2E browser tests (62 tests)
 ├── fixtures.ts                                # Login/navigate helpers

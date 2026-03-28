@@ -93,7 +93,7 @@ Edit `WhiteLabelInc.php` to change app name, title, and footer.
 
 ## Testing
 
-### PHPUnit (332 tests)
+### PHPUnit (392 tests)
 
 ```bash
 composer install

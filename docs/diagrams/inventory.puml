@@ -27,8 +27,16 @@ partition "Finance" {
   :Collections & Payments;
   note right: Finance.php\n8 categories: Field Trip,\nBirthday, Lab Fee, etc.\nReceipt tracking
 
+  :Donations;
+  note right: Donations.php\nMoney, books, equipment,\nsupplies, clothing, food\nAuto-adds to Library/Inventory\nBeneficiary tagging
+
   :Finance Report;
   note right: FinanceReport.php\nCollected/pending/overdue\nBreakdown by category
+}
+
+partition "Student Aid" {
+  :Student Needs;
+  note right: NeedyStudents.php\n14 need types (books,\nuniform, meals, medical...)\nPriority: critical→low\nLink donations to fulfill
 }
 
 partition "Reports" {
