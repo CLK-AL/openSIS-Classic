@@ -2079,3 +2079,38 @@ define("_totalCollected", "Total Collected");
 define("_totalPending", "Total Pending");
 define("_totalOverdue", "Total Overdue");
 define("_paymentRefunded", "Refunded");
+
+// Donations
+define("_donations", "Donations");
+define("_donationType", "Donation Type");
+define("_donorName", "Donor Name");
+define("_donorType", "Donor Type");
+define("_donorContact", "Donor Contact");
+define("_monetaryValue", "Monetary Value");
+define("_donationDate", "Donation Date");
+define("_beneficiaryTag", "Beneficiary Tag");
+define("_acknowledgementSent", "Acknowledgement Sent");
+define("_cashDonations", "Cash Donations");
+define("_booksDonated", "Books Donated");
+define("_equipmentDonated", "Equipment Donated");
+define("_pendingThanks", "Pending Thanks");
+define("_recordDonation", "Record Donation");
+
+// Student Needs
+define("_studentNeeds", "Student Needs");
+define("_needType", "Need Type");
+define("_estimatedCost", "Estimated Cost");
+define("_fundedAmount", "Funded Amount");
+define("_fundingNeeded", "Funding Needed");
+define("_totalFunded", "Total Funded");
+define("_dateIdentified", "Date Identified");
+define("_dateFulfilled", "Date Fulfilled");
+define("_tagNeed", "Tag Need");
+define("_markFulfilled", "Mark Fulfilled");
+define("_linkDonation", "Link Donation");
+define("_needyStudent", "Needy Student");
+define("_orphanFund", "Orphan Fund");
+define("_medicalAid", "Medical Aid");
+define("_uniformFund", "Uniform Fund");
+define("_mealProgram", "Meal Program");
+define("_scholarshipFund", "Scholarship Fund");

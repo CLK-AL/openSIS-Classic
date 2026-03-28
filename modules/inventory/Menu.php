@@ -9,10 +9,13 @@ $menu['inventory']['admin'] = array(
     'inventory/Birthdays.php'=>'Birthdays & Gifts',
     2=>'Finance',
     'inventory/Finance.php'=>'Collections & Payments',
+    'inventory/Donations.php'=>'Donations',
     'inventory/FinanceReport.php'=>'Finance Report',
-    3=>'Reports',
+    3=>'Student Aid',
+    'inventory/NeedyStudents.php'=>'Student Needs',
+    4=>'Reports',
     'inventory/EquipmentReport.php'=>'Inventory Report',
-    4=>'Setup',
+    5=>'Setup',
     'inventory/Categories.php'=>'Categories',
     'inventory/Locations.php'=>'Locations',
 );
@@ -23,6 +26,8 @@ $menu['inventory']['teacher'] = array(
     'inventory/FieldTrips.php'=>'Field Trips & Tours',
     'inventory/Birthdays.php'=>'Birthdays & Gifts',
     'inventory/Finance.php'=>'Collections & Payments',
+    'inventory/Donations.php'=>'Donations',
+    'inventory/NeedyStudents.php'=>'Student Needs',
 );
 
 $menu['inventory']['parent'] = array(

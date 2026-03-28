@@ -160,6 +160,54 @@ function inventoryEnsureTables() {
             ('$sid', 'Musical Instruments', 4), ('$sid', 'Art Supplies', 5), ('$sid', 'AV Equipment', 6),
             ('$sid', 'Furniture', 7), ('$sid', 'Safety Equipment', 8)");
     }
+
+    // ── Donations table ──────────────────────────────────────────────
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_donations` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `school_id` INT NOT NULL,
+        `donation_type` VARCHAR(50) NOT NULL DEFAULT 'money',
+        `donor_name` VARCHAR(255) NOT NULL,
+        `donor_type` VARCHAR(50) DEFAULT 'parent',
+        `donor_id` INT DEFAULT NULL,
+        `donor_contact` VARCHAR(255) DEFAULT '',
+        `title` VARCHAR(500) NOT NULL,
+        `description` TEXT,
+        `monetary_value` DECIMAL(10,2) DEFAULT 0,
+        `quantity` INT DEFAULT 1,
+        `condition_status` VARCHAR(50) DEFAULT 'New',
+        `donation_date` DATE NOT NULL,
+        `item_type` VARCHAR(50) DEFAULT NULL,
+        `book_id` INT DEFAULT NULL,
+        `equipment_id` INT DEFAULT NULL,
+        `beneficiary_student_id` INT DEFAULT NULL,
+        `beneficiary_tag` VARCHAR(100) DEFAULT NULL,
+        `receipt_number` VARCHAR(50) DEFAULT '',
+        `acknowledgement_sent` CHAR(1) DEFAULT 'N',
+        `status` VARCHAR(20) DEFAULT 'received',
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    // ── Needy children / aid tagging ─────────────────────────────────
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_student_needs` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `school_id` INT NOT NULL,
+        `student_id` INT NOT NULL,
+        `need_type` VARCHAR(100) NOT NULL,
+        `priority` VARCHAR(20) DEFAULT 'medium',
+        `description` TEXT,
+        `estimated_cost` DECIMAL(10,2) DEFAULT 0,
+        `funded_amount` DECIMAL(10,2) DEFAULT 0,
+        `funded_by_donation_id` INT DEFAULT NULL,
+        `status` VARCHAR(20) DEFAULT 'open',
+        `assigned_to` INT DEFAULT NULL,
+        `date_identified` DATE NOT NULL,
+        `date_fulfilled` DATE DEFAULT NULL,
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 }
 
 inventoryEnsureTables();
