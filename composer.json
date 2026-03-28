@@ -1,0 +1,9 @@
+{
+    "name": "os4ed/opensis-classic",
+    "description": "openSIS Classic SIS",
+    "type": "project",
+    "license": "GPL-2.0-only",
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    }
+}
