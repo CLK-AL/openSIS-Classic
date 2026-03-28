@@ -118,4 +118,109 @@ class ICalParserTest extends TestCase
         $this->assertEquals('2025-06-15', $parsed[0]['dtstart']);
         $this->assertEquals('Testing', $parsed[0]['description']);
     }
+
+    // ── VALARM Tests ─────────────────────────────────────────────────
+
+    public function testBuildAlarmMinutes(): void
+    {
+        $a = buildAlarm(60);
+        $this->assertStringContainsString('BEGIN:VALARM', $a);
+        $this->assertStringContainsString('TRIGGER:-PT1H', $a);
+        $this->assertStringContainsString('ACTION:DISPLAY', $a);
+        $this->assertStringContainsString('END:VALARM', $a);
+    }
+
+    public function testBuildAlarmDays(): void
+    {
+        $a = buildAlarm(1440);
+        $this->assertStringContainsString('TRIGGER:-P1DT', $a);
+    }
+
+    public function testBuildAlarmCustom(): void
+    {
+        $a = buildAlarm(['minutes' => 30, 'action' => 'EMAIL', 'description' => 'Book overdue']);
+        $this->assertStringContainsString('TRIGGER:-PT30M', $a);
+        $this->assertStringContainsString('ACTION:EMAIL', $a);
+        $this->assertStringContainsString('Book overdue', $a);
+    }
+
+    public function testBuildEventWithAlarms(): void
+    {
+        $e = buildEvent([
+            'uid' => 'alarm-test@opensis', 'summary' => 'Due Date',
+            'date' => '2025-09-15', 'allday' => true,
+            'alarms' => [1440, 60],
+        ]);
+        // Should contain 2 VALARMs
+        $this->assertEquals(2, substr_count($e, 'BEGIN:VALARM'));
+        $this->assertStringContainsString('TRIGGER:-P1DT', $e);
+        $this->assertStringContainsString('TRIGGER:-PT1H', $e);
+    }
+
+    public function testBuildEventWithLocation(): void
+    {
+        $e = buildEvent([
+            'uid' => 'loc@opensis', 'summary' => 'Trip',
+            'date' => '2025-06-01', 'allday' => true,
+            'location' => 'Science Museum',
+        ]);
+        $this->assertStringContainsString('LOCATION:Science Museum', $e);
+    }
+
+    public function testBuildEventWithStatus(): void
+    {
+        $e = buildEvent([
+            'uid' => 'st@opensis', 'summary' => 'Test',
+            'date' => '2025-01-01', 'allday' => true,
+            'status' => 'confirmed',
+        ]);
+        $this->assertStringContainsString('STATUS:CONFIRMED', $e);
+    }
+
+    // ── VTODO Tests ──────────────────────────────────────────────────
+
+    public function testBuildTodoBasic(): void
+    {
+        $t = buildTodo([
+            'uid' => 'todo-1@opensis', 'summary' => 'Return microscope',
+            'due' => '2025-10-01', 'priority' => 1,
+        ]);
+        $this->assertStringContainsString('BEGIN:VTODO', $t);
+        $this->assertStringContainsString('SUMMARY:Return microscope', $t);
+        $this->assertStringContainsString('DUE;VALUE=DATE:20251001', $t);
+        $this->assertStringContainsString('PRIORITY:1', $t);
+        $this->assertStringContainsString('STATUS:NEEDS-ACTION', $t);
+        $this->assertStringContainsString('END:VTODO', $t);
+    }
+
+    public function testBuildTodoWithAlarm(): void
+    {
+        $t = buildTodo([
+            'uid' => 'todo-2@opensis', 'summary' => 'Return book',
+            'due' => '2025-09-15',
+            'alarms' => [1440],
+        ]);
+        $this->assertStringContainsString('BEGIN:VALARM', $t);
+        $this->assertStringContainsString('TRIGGER:-P1DT', $t);
+    }
+
+    public function testBuildTodoCompleted(): void
+    {
+        $t = buildTodo([
+            'uid' => 'todo-3@opensis', 'summary' => 'Returned',
+            'due' => '2025-09-15',
+            'status' => 'COMPLETED',
+        ]);
+        $this->assertStringContainsString('STATUS:COMPLETED', $t);
+    }
+
+    public function testBuildTodoWithDescription(): void
+    {
+        $t = buildTodo([
+            'uid' => 'todo-4@opensis', 'summary' => 'Test',
+            'desc' => 'Detailed notes here',
+            'due' => '2025-01-01',
+        ]);
+        $this->assertStringContainsString('DESCRIPTION:Detailed notes here', $t);
+    }
 }

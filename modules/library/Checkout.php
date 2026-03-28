@@ -1,9 +1,49 @@
 <?php
 include('../../RedirectModulesInc.php');
 include('SetupInc.php');
+require_once 'functions/ICalFnc.php';
 
 $school = UserSchool();
 $staffId = (int)($_SESSION['STAFF_ID'] ?? 0);
+
+// ── Export iCal with VALARM reminders ─────────────────────────────────
+if ($_REQUEST['modfunc'] === 'ical') {
+    $cos = DBGet(DBQuery("
+        SELECT lc.*, lb.title AS book_title, lb.author,
+               CASE WHEN lc.borrower_type='student' THEN CONCAT(s.first_name,' ',s.last_name)
+                    ELSE CONCAT(st.first_name,' ',st.last_name) END AS borrower_name
+        FROM library_checkout lc
+        JOIN library_books lb ON lc.book_id = lb.book_id
+        LEFT JOIN students s ON lc.borrower_type='student' AND lc.borrower_id = s.student_id
+        LEFT JOIN staff st ON lc.borrower_type='staff' AND lc.borrower_id = st.staff_id
+        WHERE lc.school_id='$school' AND lc.status='checked_out' ORDER BY lc.due_date"));
+    $cal = icalHeader('openSIS Library Due Dates');
+    foreach ($cos as $c) {
+        // VTODO for each due book
+        $cal .= buildTodo([
+            'uid' => 'libdue-' . $c['ID'] . '@opensis',
+            'summary' => 'Return: ' . $c['BOOK_TITLE'],
+            'desc' => 'Borrowed by ' . $c['BORROWER_NAME'] . "\nAuthor: " . $c['AUTHOR'],
+            'due' => $c['DUE_DATE'],
+            'priority' => 1,
+            'status' => 'NEEDS-ACTION',
+            'alarms' => [1440, 60],  // 1 day + 1 hour before
+        ]);
+        // VEVENT on the due date with alarm
+        $cal .= buildEvent([
+            'uid' => 'libreturn-' . $c['ID'] . '@opensis',
+            'summary' => 'Book Due: ' . $c['BOOK_TITLE'],
+            'desc' => 'Borrower: ' . $c['BORROWER_NAME'],
+            'date' => $c['DUE_DATE'],
+            'allday' => true,
+            'alarms' => [1440, 60],  // remind 1 day and 1 hour before
+        ]);
+    }
+    $cal .= "END:VCALENDAR\r\n";
+    header('Content-Type: text/calendar; charset=utf-8');
+    header('Content-Disposition: attachment; filename="library_due_dates.ics"');
+    echo $cal; exit;
+}
 
 // ── Return book ──────────────────────────────────────────────────────
 if ($_REQUEST['modfunc'] === 'return' && CSRFSecure::ValidateToken(optional_param('TOKEN', '', PARAM_RAW))) {
@@ -86,6 +126,8 @@ $CSRF = CSRFSecure::CreateToken();
 <?php PopTable('footer'); ?>
 
 <?php
+echo '<div style="margin:10px 0"><a href="Modules.php?modname=' . urlencode($_REQUEST['modname']) . '&modfunc=ical" class="btn btn-info btn-sm"><i class="icon-calendar3"></i> Export Due Dates (.ics with reminders)</a></div>';
+
 PopTable('header', 'Active Checkouts');
 $columns = ['BOOK_TITLE'=>'Book', 'AUTHOR'=>'Author', 'BORROWER_NAME'=>'Borrower', 'BORROWER_TYPE'=>'Type', 'CHECKOUT_DATE'=>'Checked Out', 'DUE_DATE'=>'Due Date'];
 $link['return'] = ['link' => "Modules.php?modname=$_REQUEST[modname]&modfunc=return&TOKEN=" . CSRFSecure::CreateToken(), 'variables' => ['id' => 'ID']];

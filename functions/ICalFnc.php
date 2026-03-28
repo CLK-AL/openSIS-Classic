@@ -36,8 +36,80 @@ function buildEvent(array $d): string
     }
     $e .= "SUMMARY:" . icalEsc($d['summary']) . "\r\n";
     if (!empty($d['desc'])) $e .= "DESCRIPTION:" . icalEsc($d['desc']) . "\r\n";
+    if (!empty($d['location'])) $e .= "LOCATION:" . icalEsc($d['location']) . "\r\n";
+    if (!empty($d['status'])) $e .= "STATUS:" . strtoupper($d['status']) . "\r\n";
+
+    // VALARM reminders (array of minutes-before triggers)
+    if (!empty($d['alarms'])) {
+        foreach ((array)$d['alarms'] as $alarm) {
+            $e .= buildAlarm($alarm);
+        }
+    }
+
     $e .= "END:VEVENT\r\n";
     return $e;
+}
+
+/**
+ * Build a VTODO component (task/reminder).
+ */
+function buildTodo(array $d): string
+{
+    $t  = "BEGIN:VTODO\r\n";
+    $t .= "UID:" . icalEsc($d['uid']) . "\r\n";
+    $t .= "DTSTAMP:" . gmdate('Ymd\THis\Z') . "\r\n";
+    $t .= "SUMMARY:" . icalEsc($d['summary']) . "\r\n";
+    if (!empty($d['desc'])) $t .= "DESCRIPTION:" . icalEsc($d['desc']) . "\r\n";
+    if (!empty($d['due'])) {
+        $due = str_replace('-', '', substr($d['due'], 0, 10));
+        $t .= "DUE;VALUE=DATE:$due\r\n";
+    }
+    if (!empty($d['priority'])) $t .= "PRIORITY:" . (int)$d['priority'] . "\r\n";
+    $status = strtoupper($d['status'] ?? 'NEEDS-ACTION');
+    $t .= "STATUS:$status\r\n";
+
+    if (!empty($d['alarms'])) {
+        foreach ((array)$d['alarms'] as $alarm) {
+            $t .= buildAlarm($alarm);
+        }
+    }
+
+    $t .= "END:VTODO\r\n";
+    return $t;
+}
+
+/**
+ * Build a VALARM component.
+ * $alarm can be:
+ *   - integer: minutes before (negative trigger)
+ *   - array: ['minutes'=>N, 'action'=>'DISPLAY'|'EMAIL', 'description'=>'...']
+ */
+function buildAlarm($alarm): string
+{
+    if (is_numeric($alarm)) {
+        $alarm = ['minutes' => (int)$alarm];
+    }
+    $minutes = (int)($alarm['minutes'] ?? 60);
+    $action = strtoupper($alarm['action'] ?? 'DISPLAY');
+    $desc = $alarm['description'] ?? 'Reminder';
+
+    // Convert minutes to ISO 8601 duration
+    $days = intdiv($minutes, 1440);
+    $hours = intdiv($minutes % 1440, 60);
+    $mins = $minutes % 60;
+    $duration = 'P';
+    if ($days > 0) $duration .= $days . 'D';
+    $duration .= 'T';
+    if ($hours > 0) $duration .= $hours . 'H';
+    if ($mins > 0) $duration .= $mins . 'M';
+    if ($duration === 'PT') $duration = 'PT0M';
+
+    $a  = "BEGIN:VALARM\r\n";
+    $a .= "TRIGGER:-$duration\r\n";
+    $a .= "ACTION:$action\r\n";
+    $a .= "DESCRIPTION:" . icalEsc($desc) . "\r\n";
+    $a .= "END:VALARM\r\n";
+    return $a;
 }
 
 function parseICal(string $data): array

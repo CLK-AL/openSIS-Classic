@@ -1,7 +1,45 @@
 <?php
 include('../../RedirectModulesInc.php');
 include('SetupInc.php');
+require_once 'functions/ICalFnc.php';
 $school = UserSchool(); $staffId = (int)($_SESSION['STAFF_ID'] ?? 0);
+
+// ── Export iCal with VALARM reminders ─────────────────────────────────
+if ($_REQUEST['modfunc'] === 'ical') {
+    $cos = DBGet(DBQuery("
+        SELECT ic.*, ie.name AS equip_name,
+               CASE WHEN ic.borrower_type='student' THEN CONCAT(s.first_name,' ',s.last_name)
+                    ELSE CONCAT(st.first_name,' ',st.last_name) END AS borrower_name
+        FROM inventory_checkout ic
+        JOIN inventory_equipment ie ON ic.equipment_id = ie.equipment_id
+        LEFT JOIN students s ON ic.borrower_type='student' AND ic.borrower_id = s.student_id
+        LEFT JOIN staff st ON ic.borrower_type='staff' AND ic.borrower_id = st.staff_id
+        WHERE ic.school_id='$school' AND ic.status='checked_out' AND ic.due_date IS NOT NULL ORDER BY ic.due_date"));
+    $cal = icalHeader('openSIS Equipment Due Dates');
+    foreach ($cos as $c) {
+        $cal .= buildTodo([
+            'uid' => 'eqdue-' . $c['ID'] . '@opensis',
+            'summary' => 'Return: ' . $c['EQUIP_NAME'] . ' (x' . $c['QUANTITY'] . ')',
+            'desc' => 'Borrowed by ' . $c['BORROWER_NAME'] . "\nPurpose: " . ($c['PURPOSE'] ?? ''),
+            'due' => $c['DUE_DATE'],
+            'priority' => 1,
+            'status' => 'NEEDS-ACTION',
+            'alarms' => [1440, 60],
+        ]);
+        $cal .= buildEvent([
+            'uid' => 'eqreturn-' . $c['ID'] . '@opensis',
+            'summary' => 'Equipment Due: ' . $c['EQUIP_NAME'],
+            'desc' => 'Qty: ' . $c['QUANTITY'] . ' | ' . $c['BORROWER_NAME'],
+            'date' => $c['DUE_DATE'],
+            'allday' => true,
+            'alarms' => [1440, 60],
+        ]);
+    }
+    $cal .= "END:VCALENDAR\r\n";
+    header('Content-Type: text/calendar; charset=utf-8');
+    header('Content-Disposition: attachment; filename="equipment_due_dates.ics"');
+    echo $cal; exit;
+}
 
 if ($_REQUEST['modfunc'] === 'return' && CSRFSecure::ValidateToken(optional_param('TOKEN', '', PARAM_RAW))) {
     $id = (int)optional_param('id', 0, PARAM_INT);
@@ -75,6 +113,8 @@ $CSRF = CSRFSecure::CreateToken();
 <?php PopTable('footer'); ?>
 
 <?php
+echo '<div style="margin:10px 0"><a href="Modules.php?modname=' . urlencode($_REQUEST['modname']) . '&modfunc=ical" class="btn btn-info btn-sm"><i class="icon-calendar3"></i> Export Due Dates (.ics with reminders)</a></div>';
+
 PopTable('header', 'Active Checkouts');
 $columns = ['EQUIP_NAME'=>'Equipment', 'BORROWER_NAME'=>'Borrower', 'QUANTITY'=>'Qty', 'CHECKOUT_DATE'=>'Out', 'DUE_DATE'=>'Due', 'PURPOSE'=>'Purpose'];
 $link['return'] = ['link' => "Modules.php?modname=$_REQUEST[modname]&modfunc=return&TOKEN=" . CSRFSecure::CreateToken(), 'variables' => ['id' => 'ID']];
