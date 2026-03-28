@@ -9,7 +9,7 @@ openSIS is a Student Information System for K-12, trade schools, and higher educ
 | Area | What changed |
 |------|-------------|
 | **RTL Support** | Fixed `dir="ltr"` HTML bug, added `assets/css/rtl.css` with full Bootstrap 3 RTL overrides (grid, forms, navbar, tables, modals, dropdowns), conditional loading on all entry points |
-| **Languages** | Aligned all 1,948 translation keys across EN/AR/FR/ES/HE. Added complete Hebrew (he) RTL translation. Fixed Arabic trailing-space key bug. Added 17 missing keys to English from non-English files |
+| **Languages** | Aligned all 2,039 translation keys across EN/AR/FR/ES/HE. Added complete Hebrew (he) RTL translation. Fixed Arabic trailing-space key bug. Added 17 missing keys to English from non-English files |
 | **Translation Manager** | New UI at Tools > Translation Manager with DB-backed `i18n` table (compound PK: key+lang), import/export from lang files, paged editing, search/filter, per-row save, RTL textareas |
 | **SQLite Support** | `SqliteAdapter.php` — drop-in SQLite backend with automatic MySQL-to-SQLite SQL translation (AUTO_INCREMENT, CONCAT, NOW, LIMIT/OFFSET, etc.). Zero-config single-file database for small schools |
 | **Docker** | `Dockerfile` (PHP 8.3/Apache/Bookworm), `docker-compose.yml` (app + MySQL 8.0), `docker-entrypoint.sh` (auto-generates Data.php from env vars) |
@@ -22,9 +22,9 @@ openSIS is a Student Information System for K-12, trade schools, and higher educ
 | **Finance** | Collections and payments from parents (8 categories: Field Trip, Birthday, Lab Fee, Book Fee, etc.), receipt tracking, finance reports |
 | **vCard/iCal** | Export students/staff/parents as .vcf contacts; export events/school days/marking periods as .ics; import .vcf and .ics files |
 | **DB Migration** | `migrate-db.php` — CLI tool to migrate between SQLite, MySQL, and PostgreSQL with automatic type mapping |
-| **PHPUnit Tests** | 332 tests / 575 assertions: security (CSRF, SQL injection, password hash), input validation (all PARAM_* types), date/time, UI generation, DB-dependent functions via TSV mock and SQLite |
-| **Playwright E2E** | 62 browser tests across all 9 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
-| **Architecture Docs** | 13 PlantUML diagrams: module workflows per role, authentication flow, data model, role-access matrix, test coverage map |
+| **PHPUnit Tests** | 392 tests / 768 assertions: security, input validation, date/time, UI generation, DB-dependent via TSV mock and SQLite, full donation-classroom E2E simulation |
+| **Playwright E2E** | 62 browser tests across 11 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
+| **Architecture Docs** | 16 PlantUML diagrams: module workflows per role, authentication flow, data model, role-access matrix, test coverage map |
 | **Bug Fixes** | Missing closing quote on `dir="ltr"` (Warehouse.php), uninitialized `$langCode` (language.php), missing semicolon (supportedLanguages.php), debug var_dumps removed (LoginInc.php), `langDirection()` null-safety |
 
 ## Quick Start
@@ -71,11 +71,11 @@ $DatabaseName = __DIR__ . '/data/opensis.db';
 
 | Language | Code | Direction | Coverage |
 |----------|------|-----------|----------|
-| English | en | LTR | 1,948 keys (base) |
-| Arabic | ar | RTL | 1,948 keys (100%) |
-| French | fr | LTR | 1,948 keys (100%) |
-| Spanish | es | LTR | 1,948 keys (100%) |
-| Hebrew | he | RTL | 1,948 keys (99.2%) |
+| English | en | LTR | 2,039 keys (base) |
+| Arabic | ar | RTL | 2,030 keys (100%) |
+| French | fr | LTR | 2,047 keys (100%) |
+| Spanish | es | LTR | 2,031 keys (100%) |
+| Hebrew | he | RTL | 2,039 keys (100%) |
 
 Manage translations at **Tools > Translation Manager**.
 
@@ -152,7 +152,7 @@ openSIS-Classic/
 │   ├── branding/                     # Custom logo/favicon drop-in
 │   └── css/rtl.css                   # RTL stylesheet
 ├── docs/
-│   └── diagrams/*.puml               # 15 PlantUML diagrams
+│   └── diagrams/*.puml               # 16 PlantUML diagrams
 ├── e2e/                              # 62 Playwright E2E tests
 │   ├── fixtures.ts                   # Login/navigate helpers
 │   ├── auth.spec.ts                  # Authentication tests
@@ -180,7 +180,7 @@ openSIS-Classic/
 
 ## Other Documentation
 
-- [tests.md](tests.md) — Full test suite documentation (332 tests)
+- [tests.md](tests.md) — Full test suite documentation (392 tests)
 - [bootstrap-upgrade.md](bootstrap-upgrade.md) — Bootstrap 3.3.5 → 5.x upgrade plan
 - [assets/branding/README.md](assets/branding/README.md) — White-label instructions
 

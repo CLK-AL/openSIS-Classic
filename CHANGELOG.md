@@ -133,16 +133,17 @@ All changes in this fork compared to [OS4ED/openSIS-Classic](https://github.com/
 
 ## Test Suite
 
-### PHPUnit (332 tests, 575 assertions)
+### PHPUnit (392 tests, 768 assertions)
 
-Unit tests (25 suites):
-- `PasswordHashTest` (9), `CSRFSecurityTest` (11), `SqlSecurityFilterTest` (22), `CleanParamTest` (24), `MonthNwSwitchTest` (30), `LangDirectionTest` (8), `PercentTest` (10), `DbDateTest` (13), `SortFncTest` (10), `BrowserTest` (6), `ButtonsTest` (3), `ReindexResultsTest` (4), `ErrorMessageTest` (8), `ShowVarTest` (4), `DrawTabTest` (8), `DrawHeaderTest` (5), `PopTableTest` (4), `UrlFncTest` (5), `PreparePhpSelfTest` (5), `TsvMockTest` (11), `ConfigFncTest` (4), `DeCodedsTest` (6), `UserFncTest` (8), `AllowEditTest` (14), `SqliteAdapterTest` (16)
+Unit tests (28 suites):
+- `PasswordHashTest` (9), `CSRFSecurityTest` (11), `SqlSecurityFilterTest` (22), `CleanParamTest` (24), `MonthNwSwitchTest` (30), `LangDirectionTest` (8), `PercentTest` (10), `DbDateTest` (13), `SortFncTest` (10), `BrowserTest` (6), `ButtonsTest` (3), `ReindexResultsTest` (4), `ErrorMessageTest` (8), `ShowVarTest` (4), `DrawTabTest` (8), `DrawHeaderTest` (5), `PopTableTest` (4), `UrlFncTest` (5), `PreparePhpSelfTest` (5), `TsvMockTest` (11), `ConfigFncTest` (4), `DeCodedsTest` (6), `UserFncTest` (8), `AllowEditTest` (14), `SqliteAdapterTest` (16), `VCardParserTest` (11), `ICalParserTest` (22), `MigrateDbTest` (7)
 
-Integration tests (6 suites):
-- `AuthenticationWorkflowTest` (8), `InputValidationWorkflowTest` (16), `SessionSecurityWorkflowTest` (10), `LanguageWorkflowTest` (10), `DateWorkflowTest` (10), `DBGetWorkflowTest` (12)
+Integration tests (7 suites):
+- `AuthenticationWorkflowTest` (8), `InputValidationWorkflowTest` (16), `SessionSecurityWorkflowTest` (10), `LanguageWorkflowTest` (10), `DateWorkflowTest` (10), `DBGetWorkflowTest` (12), `DonationClassroomTest` (20)
 
 Infrastructure:
 - `TsvMock.php` — TSV-based DB mock (replaces `db_fetch_row`/`DBQuery` for testing)
+- `SqliteTestDb.php` — SQLite-based test DB for E2E simulations (20+ tables, school seeding)
 - `phpunit.xml` — test suite configuration
 - `composer.json` — PHPUnit 11 dependency
 

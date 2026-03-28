@@ -45,7 +45,7 @@ composer install
 tests/
 ├── bootstrap.php                              # Autoloader, session init, shared includes
 ├── TsvMock.php                                # TSV-based DB mock infrastructure
-├── Unit/                                      # Isolated function-level tests (280 tests)
+├── Unit/                                      # Isolated function-level tests (307 tests)
 │   ├── PasswordHashTest.php                   #   9 tests
 │   ├── CSRFSecurityTest.php                   #  11 tests
 │   ├── SqlSecurityFilterTest.php              #  22 tests
@@ -72,7 +72,7 @@ tests/
 │   ├── AllowEditTest.php                      #  14 tests (DB mock)
 │   └── SqliteAdapterTest.php                  #  16 tests (SQLite)
 ├── SqliteTestDb.php                           # SQLite-based test DB for E2E sims
-└── Integration/                               # Multi-component workflow tests (72 tests)
+└── Integration/                               # Multi-component workflow tests (85 tests)
     ├── AuthenticationWorkflowTest.php         #   8 tests
     ├── InputValidationWorkflowTest.php        #  16 tests
     ├── SessionSecurityWorkflowTest.php        #  10 tests
