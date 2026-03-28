@@ -1986,4 +1986,59 @@ define("_studentsList", "قائمة الطلاب");
 define("_tokens", "الرموز");
 define("_useLastYearsIfMissing", "استخدم بيانات العام الماضي في حالة عدم التوفر");
 define("_youMustChooseAtLeastOnePeriodAndOneStudent", "يجب اختيار فترة واحدة وطالب واحد على الأقل");
+// Library
+define("_bookCatalog", "فهرس الكتب");
+define("_checkoutReturn", "إعارة / إرجاع");
+define("_overdueBooks", "كتب متأخرة");
+define("_addBook", "إضافة كتاب");
+define("_isbn", "ISBN");
+define("_author", "المؤلف");
+define("_publisher", "الناشر");
+define("_totalCopies", "إجمالي النسخ");
+define("_availableCopies", "النسخ المتاحة");
+define("_checkedOut", "مُعار");
+define("_daysOverdue", "أيام التأخير");
+define("_borrower", "المستعير");
+define("_returnBook", "إرجاع الكتاب");
+// Inventory
+define("_equipmentCatalog", "فهرس المعدات");
+define("_maintenanceLog", "سجل الصيانة");
+define("_serialNumber", "الرقم التسلسلي");
+define("_assetTag", "رقم الأصل");
+define("_conditionStatus", "الحالة");
+define("_purchaseCost", "تكلفة الشراء");
+define("_warrantyExpiry", "انتهاء الضمان");
+define("_totalValue", "القيمة الإجمالية");
+define("_maintenanceType", "نوع الصيانة");
+define("_performedBy", "بواسطة");
+define("_nextMaintenance", "الصيانة القادمة");
+// Field Trips
+define("_fieldTrips", "رحلات ميدانية وجولات");
+define("_tripDestination", "الوجهة");
+define("_tripDate", "تاريخ الرحلة");
+define("_returnDate", "تاريخ العودة");
+define("_costPerStudent", "التكلفة لكل طالب");
+define("_totalBudget", "الميزانية الإجمالية");
+define("_collectedAmount", "المبلغ المحصّل");
+define("_maxStudents", "الحد الأقصى للطلاب");
+define("_consentReceived", "تم استلام الموافقة");
+define("_departureTime", "وقت المغادرة");
+define("_returnTime", "وقت العودة");
+// Birthdays
+define("_birthdaysAndGifts", "أعياد الميلاد والهدايا");
+define("_giftBudget", "ميزانية الهدية");
+define("_giftDescription", "وصف الهدية");
+define("_giftCollecting", "جارٍ التحصيل");
+define("_giftPurchased", "تم الشراء");
+define("_giftDelivered", "تم التسليم");
+// Finance
+define("_collectionsAndPayments", "التحصيلات والمدفوعات");
+define("_financeReport", "تقرير مالي");
+define("_paymentType", "نوع الدفع");
+define("_paymentDate", "تاريخ الدفع");
+define("_receiptNumber", "رقم الإيصال");
+define("_totalCollected", "إجمالي المحصّل");
+define("_totalPending", "إجمالي المعلّق");
+define("_totalOverdue", "إجمالي المتأخر");
+define("_paymentRefunded", "مسترد");
 ?>

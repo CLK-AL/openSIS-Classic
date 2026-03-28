@@ -1998,4 +1998,59 @@ define("_dataHasBeenRolledoverFor", "Los datos se han transferido para");
 define("_didNotRecieve", "No recibió");
 define("_duplicateDataFoundRequestAlreadyExists", "Se encontraron datos duplicados. ¡La solicitud ya existe!");
 define("_forDatesYyyyMmDdForCheckboxesYAmpForLongTextItWillBeIgnored", "para fechas: AAAA-MM-DD, para casillas: S y para texto largo, será ignorado");
+// Library
+define("_bookCatalog", "Catálogo de libros");
+define("_checkoutReturn", "Préstamo / Devolución");
+define("_overdueBooks", "Libros atrasados");
+define("_addBook", "Agregar libro");
+define("_isbn", "ISBN");
+define("_author", "Autor");
+define("_publisher", "Editorial");
+define("_totalCopies", "Total de copias");
+define("_availableCopies", "Copias disponibles");
+define("_checkedOut", "Prestado");
+define("_daysOverdue", "Días de atraso");
+define("_borrower", "Prestatario");
+define("_returnBook", "Devolver libro");
+// Inventory
+define("_equipmentCatalog", "Catálogo de equipos");
+define("_maintenanceLog", "Registro de mantenimiento");
+define("_serialNumber", "Número de serie");
+define("_assetTag", "Etiqueta de activo");
+define("_conditionStatus", "Estado");
+define("_purchaseCost", "Costo de compra");
+define("_warrantyExpiry", "Vencimiento de garantía");
+define("_totalValue", "Valor total");
+define("_maintenanceType", "Tipo de mantenimiento");
+define("_performedBy", "Realizado por");
+define("_nextMaintenance", "Próximo mantenimiento");
+// Field Trips
+define("_fieldTrips", "Excursiones y visitas");
+define("_tripDestination", "Destino");
+define("_tripDate", "Fecha de la excursión");
+define("_returnDate", "Fecha de regreso");
+define("_costPerStudent", "Costo por estudiante");
+define("_totalBudget", "Presupuesto total");
+define("_collectedAmount", "Monto recaudado");
+define("_maxStudents", "Máximo de estudiantes");
+define("_consentReceived", "Consentimiento recibido");
+define("_departureTime", "Hora de salida");
+define("_returnTime", "Hora de regreso");
+// Birthdays
+define("_birthdaysAndGifts", "Cumpleaños y regalos");
+define("_giftBudget", "Presupuesto de regalo");
+define("_giftDescription", "Descripción del regalo");
+define("_giftCollecting", "Recaudando");
+define("_giftPurchased", "Comprado");
+define("_giftDelivered", "Entregado");
+// Finance
+define("_collectionsAndPayments", "Recaudaciones y pagos");
+define("_financeReport", "Informe financiero");
+define("_paymentType", "Tipo de pago");
+define("_paymentDate", "Fecha de pago");
+define("_receiptNumber", "Número de recibo");
+define("_totalCollected", "Total recaudado");
+define("_totalPending", "Total pendiente");
+define("_totalOverdue", "Total atrasado");
+define("_paymentRefunded", "Reembolsado");
 ?>

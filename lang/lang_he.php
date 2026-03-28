@@ -2019,4 +2019,59 @@ define("_studentsList", "רשימת תלמידים");
 define("_tokens", "טוקנים");
 define("_useLastYearsIfMissing", "השתמש בנתוני השנה שעברה אם חסר");
 define("_youMustChooseAtLeastOnePeriodAndOneStudent", "עליך לבחור לפחות שעה אחת ותלמיד אחד");
+// Library
+define("_bookCatalog", "קטלוג ספרים");
+define("_checkoutReturn", "השאלה / החזרה");
+define("_overdueBooks", "ספרים באיחור");
+define("_addBook", "הוספת ספר");
+define("_isbn", "ISBN");
+define("_author", "מחבר");
+define("_publisher", "הוצאה לאור");
+define("_totalCopies", "סה\"כ עותקים");
+define("_availableCopies", "עותקים זמינים");
+define("_checkedOut", "מושאל");
+define("_daysOverdue", "ימי איחור");
+define("_borrower", "שואל");
+define("_returnBook", "החזרת ספר");
+// Inventory
+define("_equipmentCatalog", "קטלוג ציוד");
+define("_maintenanceLog", "יומן תחזוקה");
+define("_serialNumber", "מספר סידורי");
+define("_assetTag", "תג רכוש");
+define("_conditionStatus", "מצב");
+define("_purchaseCost", "עלות רכישה");
+define("_warrantyExpiry", "תפוגת אחריות");
+define("_totalValue", "ערך כולל");
+define("_maintenanceType", "סוג תחזוקה");
+define("_performedBy", "בוצע על ידי");
+define("_nextMaintenance", "תחזוקה הבאה");
+// Field Trips
+define("_fieldTrips", "טיולים וסיורים");
+define("_tripDestination", "יעד");
+define("_tripDate", "תאריך הטיול");
+define("_returnDate", "תאריך חזרה");
+define("_costPerStudent", "עלות לתלמיד");
+define("_totalBudget", "תקציב כולל");
+define("_collectedAmount", "סכום שנגבה");
+define("_maxStudents", "מקסימום תלמידים");
+define("_consentReceived", "אישור הורים התקבל");
+define("_departureTime", "שעת יציאה");
+define("_returnTime", "שעת חזרה");
+// Birthdays
+define("_birthdaysAndGifts", "ימי הולדת ומתנות");
+define("_giftBudget", "תקציב מתנה");
+define("_giftDescription", "תיאור המתנה");
+define("_giftCollecting", "בגבייה");
+define("_giftPurchased", "נרכש");
+define("_giftDelivered", "נמסר");
+// Finance
+define("_collectionsAndPayments", "גביות ותשלומים");
+define("_financeReport", "דוח כספי");
+define("_paymentType", "סוג תשלום");
+define("_paymentDate", "תאריך תשלום");
+define("_receiptNumber", "מספר קבלה");
+define("_totalCollected", "סה\"כ נגבה");
+define("_totalPending", "סה\"כ ממתין");
+define("_totalOverdue", "סה\"כ באיחור");
+define("_paymentRefunded", "הוחזר");
 ?>
