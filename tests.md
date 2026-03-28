@@ -2,7 +2,7 @@
 
 ## Overview
 
-PHPUnit 11 test suite covering the core application workflows with **188 tests** and **310 assertions**.
+PHPUnit 11 test suite with **332 tests** and **575 assertions**, plus **62 Playwright E2E browser tests**.
 
 ### Requirements
 
@@ -44,20 +44,55 @@ composer install
 ```
 tests/
 ├── bootstrap.php                              # Autoloader, session init, shared includes
-├── Unit/                                      # Isolated function-level tests
+├── TsvMock.php                                # TSV-based DB mock infrastructure
+├── Unit/                                      # Isolated function-level tests (280 tests)
 │   ├── PasswordHashTest.php                   #   9 tests
 │   ├── CSRFSecurityTest.php                   #  11 tests
 │   ├── SqlSecurityFilterTest.php              #  22 tests
 │   ├── CleanParamTest.php                     #  24 tests
 │   ├── MonthNwSwitchTest.php                  #  30 tests
-│   ├── LangDirectionTest.php                  #   7 tests
-│   └── PercentTest.php                        #  10 tests
-└── Integration/                               # Multi-component workflow tests
+│   ├── LangDirectionTest.php                  #   8 tests
+│   ├── PercentTest.php                        #  10 tests
+│   ├── DbDateTest.php                         #  13 tests
+│   ├── SortFncTest.php                        #  10 tests
+│   ├── BrowserTest.php                        #   6 tests
+│   ├── ButtonsTest.php                        #   3 tests
+│   ├── ReindexResultsTest.php                 #   4 tests
+│   ├── ErrorMessageTest.php                   #   8 tests
+│   ├── ShowVarTest.php                        #   4 tests
+│   ├── DrawTabTest.php                        #   8 tests
+│   ├── DrawHeaderTest.php                     #   5 tests
+│   ├── PopTableTest.php                       #   4 tests
+│   ├── UrlFncTest.php                         #   5 tests
+│   ├── PreparePhpSelfTest.php                 #   5 tests
+│   ├── TsvMockTest.php                        #  11 tests (DB mock)
+│   ├── ConfigFncTest.php                      #   4 tests (DB mock)
+│   ├── DeCodedsTest.php                       #   6 tests (DB mock)
+│   ├── UserFncTest.php                        #   8 tests (DB mock)
+│   ├── AllowEditTest.php                      #  14 tests (DB mock)
+│   └── SqliteAdapterTest.php                  #  16 tests (SQLite)
+└── Integration/                               # Multi-component workflow tests (52 tests)
     ├── AuthenticationWorkflowTest.php         #   8 tests
     ├── InputValidationWorkflowTest.php        #  16 tests
     ├── SessionSecurityWorkflowTest.php        #  10 tests
     ├── LanguageWorkflowTest.php               #  10 tests
-    └── DateWorkflowTest.php                   #  10 tests
+    ├── DateWorkflowTest.php                   #  10 tests
+    └── DBGetWorkflowTest.php                  #  12 tests (TSV mock)
+
+e2e/                                           # Playwright E2E browser tests (62 tests)
+├── fixtures.ts                                # Login/navigate helpers
+├── auth.spec.ts                               #  10 tests
+├── navigation.spec.ts                         #   4 tests
+├── school-setup.spec.ts                       #   8 tests
+├── students.spec.ts                           #   6 tests
+├── users.spec.ts                              #   6 tests
+├── scheduling.spec.ts                         #   6 tests
+├── grades.spec.ts                             #   7 tests
+├── attendance.spec.ts                         #   5 tests
+├── messaging.spec.ts                          #   5 tests
+├── tools.spec.ts                              #   7 tests
+├── eligibility.spec.ts                        #   3 tests
+└── rtl.spec.ts                                #   7 tests
 ```
 
 ---
@@ -350,6 +385,8 @@ Loads:
 - `ParamLibFnc.php` (PARAM_* constants + `clean_param` + `optional_param`)
 - `MonthNwSwitchFnc.php` (month conversion, dependency for date tests)
 - `PragRepFnc.php` (regex helper `par_rep()`, dependency for `clean_param`)
+- `TsvMock.php` (TSV-based DB mock — overrides `db_fetch_row`/`DBQuery`)
+- `DbGetFnc.php` (uses the mocked `db_fetch_row`)
 
 ---
 
@@ -383,17 +420,26 @@ class YourFncTest extends TestCase
 
 ## Coverage Gaps (Future Work)
 
-These areas need tests but require database mocking or further refactoring:
+DB-dependent functions now testable via TSV mock or SQLite. Remaining gaps:
 
 | Area | Reason | Priority |
 |------|--------|----------|
-| `DBQuery()` / `DBGet()` | Requires MySQL connection or mock | High |
-| `SaveData()` | Database writes | High |
+| `SaveData()` | Complex INSERT/UPDATE generation | Medium |
 | `GetStuList()` | Complex SQL generation (134KB) | Medium |
 | `SearchFnc.php` | Session + DB dependent (80KB) | Medium |
 | `ListOutput()` | UI rendering (1MB file) | Low |
-| `AllowEdit()` / `AllowUse()` | Profile-based permission checks, needs DB | Medium |
-| `AttendanceFnc.php` | DB-dependent attendance updates | Medium |
+| `AttendanceFnc.php` | DB-dependent attendance updates | Low |
 | `CustomFieldsFnc.php` | Dynamic field handling, needs DB | Low |
-| Grade calculations | `_makeLetterGrade()` needs DB for grade scale | Medium |
+| `_makeLetterGrade()` | Needs grade scale config from DB | Low |
 | `Currency()` | DB lookup for currency setting | Low |
+
+### Already Covered via TSV Mock / SQLite
+
+| Area | Test Suite | Tests |
+|------|-----------|-------|
+| `DBGet()` / `db_fetch_row()` | TsvMockTest, DBGetWorkflowTest | 23 |
+| `AllowEdit()` / `AllowUse()` | AllowEditTest | 14 |
+| `User()` / `Preferences()` | UserFncTest | 8 |
+| `Config()` | ConfigFncTest | 4 |
+| `DeCodeds()` / `cleanParamMod()` | DeCodedsTest | 6 |
+| SQLite adapter | SqliteAdapterTest | 16 |

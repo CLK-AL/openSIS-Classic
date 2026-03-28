@@ -115,15 +115,19 @@ class SqliteConnection
         // UNSIGNED → (remove)
         $sql = preg_replace('/\bUNSIGNED\b/i', '', $sql);
 
-        // DATETIME, TIMESTAMP → TEXT (SQLite has no native datetime)
-        $sql = preg_replace('/\bDATETIME\b/i', 'TEXT', $sql);
-        $sql = preg_replace('/\bTIMESTAMP\b(\s+DEFAULT\s+CURRENT_TIMESTAMP(\s+ON\s+UPDATE\s+CURRENT_TIMESTAMP)?)?/i', 'TEXT DEFAULT CURRENT_TIMESTAMP', $sql);
-
-        // ENUM(...) → TEXT
-        $sql = preg_replace('/\bENUM\s*\([^)]+\)/i', 'TEXT', $sql);
-
-        // ON UPDATE CURRENT_TIMESTAMP → (remove, handled by trigger)
+        // DATETIME, TIMESTAMP → keep as TIMESTAMP (SQLite stores as text but
+        // datetime functions work natively on ISO-8601 strings)
+        // Strip ON UPDATE CURRENT_TIMESTAMP (MySQL-only trigger syntax)
         $sql = preg_replace('/\bON\s+UPDATE\s+CURRENT_TIMESTAMP\b/i', '', $sql);
+
+        // ENUM('a','b','c') → TEXT CHECK(col IN ('a','b','c')) is ideal but
+        // complex to wire into arbitrary column defs, so store allowed values
+        // as a CHECK comment and keep as TEXT. Values are semicolon-joined in a comment.
+        $sql = preg_replace_callback('/\bENUM\s*\(([^)]+)\)/i', function($m) {
+            // Extract values for a CHECK constraint comment
+            $vals = $m[1]; // e.g. 'admin','teacher','parent'
+            return "TEXT /* ENUM($vals) */";
+        }, $sql);
 
         // LONGTEXT, MEDIUMTEXT → TEXT
         $sql = preg_replace('/\b(LONG|MEDIUM)TEXT\b/i', 'TEXT', $sql);

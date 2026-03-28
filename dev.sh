@@ -47,8 +47,23 @@ fi
 
 # ── Generate Data.php if missing ──────────────────────────────────────
 if [ ! -f "${DIR}/Data.php" ]; then
-    echo -e "${YELLOW}[WARN]${NC} Data.php not found. Creating with defaults..."
-    cat > "${DIR}/Data.php" <<EOPHP
+    DB_TYPE="${DB_TYPE:-sqlite}"
+
+    if [ "$DB_TYPE" = "sqlite" ]; then
+        mkdir -p "${DIR}/data"
+        echo -e "${GREEN}[INFO]${NC} Creating Data.php with SQLite (default, no MySQL needed)..."
+        cat > "${DIR}/Data.php" <<EOPHP
+<?php
+\$DatabaseType      = 'sqlite';
+\$DatabaseName      = __DIR__ . '/data/opensis.db';
+\$DatabaseServer    = '';
+\$DatabaseUsername   = '';
+\$DatabasePassword   = '';
+\$DatabasePort       = '';
+EOPHP
+    else
+        echo -e "${GREEN}[INFO]${NC} Creating Data.php with MySQL..."
+        cat > "${DIR}/Data.php" <<EOPHP
 <?php
 \$DatabaseServer   = '${DB_HOST:-localhost}';
 \$DatabaseUsername  = '${DB_USER:-opensis}';
@@ -57,19 +72,25 @@ if [ ! -f "${DIR}/Data.php" ]; then
 \$DatabasePort      = '${DB_PORT:-3306}';
 \$DatabaseType      = 'mysqli';
 EOPHP
-    echo -e "${GREEN}[INFO]${NC} Data.php created. Edit it if your DB settings differ."
+    fi
+    echo -e "${GREEN}[INFO]${NC} Data.php created. Edit it to change database settings."
 fi
 
-# ── Check MySQL connection ────────────────────────────────────────────
-DB_HOST_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseServer;" 2>/dev/null || echo "localhost")
-DB_USER_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseUsername;" 2>/dev/null || echo "opensis")
-DB_NAME_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseName;" 2>/dev/null || echo "opensis")
+# ── Check database connection ─────────────────────────────────────────
+DB_TYPE_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseType;" 2>/dev/null || echo "sqlite")
 
-if command -v mysqladmin &>/dev/null; then
-    if mysqladmin ping -h "$DB_HOST_VAL" -u "$DB_USER_VAL" --silent 2>/dev/null; then
-        echo -e "${GREEN}[INFO]${NC} MySQL connection OK (${DB_USER_VAL}@${DB_HOST_VAL}/${DB_NAME_VAL})"
-    else
-        echo -e "${YELLOW}[WARN]${NC} Cannot connect to MySQL at ${DB_HOST_VAL}. Make sure MySQL is running."
+if [ "$DB_TYPE_VAL" = "sqlite" ]; then
+    DB_PATH=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseName;" 2>/dev/null || echo "")
+    echo -e "${GREEN}[INFO]${NC} Using SQLite database: ${DB_PATH}"
+else
+    DB_HOST_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseServer;" 2>/dev/null || echo "localhost")
+    DB_USER_VAL=$(php -r "include '${DIR}/Data.php'; echo \$DatabaseUsername;" 2>/dev/null || echo "opensis")
+    if command -v mysqladmin &>/dev/null; then
+        if mysqladmin ping -h "$DB_HOST_VAL" -u "$DB_USER_VAL" --silent 2>/dev/null; then
+            echo -e "${GREEN}[INFO]${NC} MySQL connection OK (${DB_USER_VAL}@${DB_HOST_VAL})"
+        else
+            echo -e "${YELLOW}[WARN]${NC} Cannot connect to MySQL at ${DB_HOST_VAL}. Make sure MySQL is running."
+        fi
     fi
 fi
 
