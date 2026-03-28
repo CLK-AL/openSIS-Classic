@@ -82,4 +82,84 @@ function inventoryEnsureTables() {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 }
 
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_field_trips` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `school_id` INT NOT NULL,
+        `title` VARCHAR(500) NOT NULL,
+        `description` TEXT,
+        `destination` VARCHAR(500) DEFAULT '',
+        `trip_date` DATE NOT NULL,
+        `return_date` DATE DEFAULT NULL,
+        `departure_time` VARCHAR(10) DEFAULT '',
+        `return_time` VARCHAR(10) DEFAULT '',
+        `cost_per_student` DECIMAL(10,2) DEFAULT 0,
+        `total_budget` DECIMAL(10,2) DEFAULT 0,
+        `collected_amount` DECIMAL(10,2) DEFAULT 0,
+        `max_students` INT DEFAULT NULL,
+        `status` VARCHAR(20) DEFAULT 'planned',
+        `organizer_id` INT DEFAULT NULL,
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_trip_students` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `trip_id` INT NOT NULL,
+        `student_id` INT NOT NULL,
+        `paid_amount` DECIMAL(10,2) DEFAULT 0,
+        `payment_status` VARCHAR(20) DEFAULT 'pending',
+        `consent_received` CHAR(1) DEFAULT 'N',
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_finance` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `school_id` INT NOT NULL,
+        `category` VARCHAR(100) NOT NULL DEFAULT 'General',
+        `title` VARCHAR(500) NOT NULL,
+        `description` TEXT,
+        `student_id` INT DEFAULT NULL,
+        `staff_id` INT DEFAULT NULL,
+        `amount` DECIMAL(10,2) NOT NULL DEFAULT 0,
+        `payment_type` VARCHAR(50) DEFAULT 'cash',
+        `payment_date` DATE NOT NULL,
+        `due_date` DATE DEFAULT NULL,
+        `status` VARCHAR(20) DEFAULT 'paid',
+        `reference_type` VARCHAR(50) DEFAULT NULL,
+        `reference_id` INT DEFAULT NULL,
+        `receipt_number` VARCHAR(50) DEFAULT '',
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    DBQuery("CREATE TABLE IF NOT EXISTS `inventory_birthdays` (
+        `id` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `school_id` INT NOT NULL,
+        `student_id` INT DEFAULT NULL,
+        `staff_id` INT DEFAULT NULL,
+        `event_date` DATE NOT NULL,
+        `gift_budget` DECIMAL(10,2) DEFAULT 0,
+        `collected_amount` DECIMAL(10,2) DEFAULT 0,
+        `gift_description` VARCHAR(500) DEFAULT '',
+        `status` VARCHAR(20) DEFAULT 'upcoming',
+        `notes` TEXT,
+        `last_updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_by` INT DEFAULT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    // Seed default categories
+    $catCheck = DBGet(DBQuery("SELECT COUNT(*) AS cnt FROM inventory_categories WHERE school_id='" . UserSchool() . "'"));
+    if ((int)($catCheck[1]['CNT'] ?? 0) === 0) {
+        $sid = UserSchool();
+        DBQuery("INSERT INTO inventory_categories (school_id, title, sort_order) VALUES
+            ('$sid', 'Lab Equipment', 1), ('$sid', 'IT Hardware', 2), ('$sid', 'Sports Equipment', 3),
+            ('$sid', 'Musical Instruments', 4), ('$sid', 'Art Supplies', 5), ('$sid', 'AV Equipment', 6),
+            ('$sid', 'Furniture', 7), ('$sid', 'Safety Equipment', 8)");
+    }
+}
+
 inventoryEnsureTables();

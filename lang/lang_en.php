@@ -2019,3 +2019,63 @@ define("_studentsList", "Students List");
 define("_tokens", "Tokens");
 define("_useLastYearsIfMissing", "Use last year's if missing");
 define("_youMustChooseAtLeastOnePeriodAndOneStudent", "You must choose at least one period and one student");
+
+// Library Module
+define("_bookCatalog", "Book Catalog");
+define("_checkoutReturn", "Checkout / Return");
+define("_overdueBooks", "Overdue Books");
+define("_addBook", "Add Book");
+define("_isbn", "ISBN");
+define("_author", "Author");
+define("_publisher", "Publisher");
+define("_totalCopies", "Total Copies");
+define("_availableCopies", "Available Copies");
+define("_checkedOut", "Checked Out");
+define("_daysOverdue", "Days Overdue");
+define("_borrower", "Borrower");
+define("_returnBook", "Return Book");
+
+// Inventory Module
+define("_equipmentCatalog", "Equipment Catalog");
+define("_maintenanceLog", "Maintenance Log");
+define("_serialNumber", "Serial Number");
+define("_assetTag", "Asset Tag");
+define("_conditionStatus", "Condition");
+define("_purchaseCost", "Purchase Cost");
+define("_warrantyExpiry", "Warranty Expiry");
+define("_totalValue", "Total Value");
+define("_maintenanceType", "Maintenance Type");
+define("_performedBy", "Performed By");
+define("_nextMaintenance", "Next Maintenance");
+
+// Field Trips & Tours
+define("_fieldTrips", "Field Trips & Tours");
+define("_tripDestination", "Destination");
+define("_tripDate", "Trip Date");
+define("_returnDate", "Return Date");
+define("_costPerStudent", "Cost per Student");
+define("_totalBudget", "Total Budget");
+define("_collectedAmount", "Collected Amount");
+define("_maxStudents", "Max Students");
+define("_consentReceived", "Consent Received");
+define("_departureTime", "Departure Time");
+define("_returnTime", "Return Time");
+
+// Birthdays & Gifts
+define("_birthdaysAndGifts", "Birthdays & Gifts");
+define("_giftBudget", "Gift Budget");
+define("_giftDescription", "Gift Description");
+define("_giftCollecting", "Collecting");
+define("_giftPurchased", "Purchased");
+define("_giftDelivered", "Delivered");
+
+// Finance / Collections
+define("_collectionsAndPayments", "Collections & Payments");
+define("_financeReport", "Finance Report");
+define("_paymentType", "Payment Type");
+define("_paymentDate", "Payment Date");
+define("_receiptNumber", "Receipt Number");
+define("_totalCollected", "Total Collected");
+define("_totalPending", "Total Pending");
+define("_totalOverdue", "Total Overdue");
+define("_paymentRefunded", "Refunded");
