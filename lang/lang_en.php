@@ -1998,5 +1998,5 @@ define('_admin', 'Admin');
 define('_gpscall', 'Gp Scall');
 define('link','link');
 define("ROOM_ID","ROOM_ID");
-define("generalInfo","generalInfo");
+define("generalInfo","General Info");
 define('students','Students');

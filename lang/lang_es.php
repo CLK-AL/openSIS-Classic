@@ -1985,4 +1985,13 @@ define('_reportCardGradingScale','Escala de calificación de la tarjeta de calif
 define("_noStudentIsAssociatedWithTheParentForTheCurrentDate", "Ningún estudiante está asociado con el padre para la fecha actual.");
 define("_eitherTheStudentIsNoLongerActiveOrStartingSchoolInAFutureDate", "O bien el estudiante ya no está activo o comenzará la escuela en una fecha futura.");
 define("_pleaseContactTheSchoolAdministrationForMoreInformation", "Comuníquese con la administración de la escuela para obtener más información.");
+define("ROOM_ID","ROOM_ID");
+define("generalInfo","Información general");
+define("_addAUserProfile", "AGREGAR UN PERFIL DE USUARIO");
+define("_clickToChangeTheFieldValues", "Haga clic para cambiar los valores del campo");
+define("_fileUploadedSuccessfully", "Archivo subido exitosamente");
+define("_get", "Obtener");
+define("_printt", "Imprimir");
+define("_selectImageFile", "Seleccionar archivo de imagen");
+define("_withTeacherPeriod", "Con profesor y período");
 ?>

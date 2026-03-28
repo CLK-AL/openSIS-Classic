@@ -1285,7 +1285,7 @@ define("_avgAttendance", "متوسط الحضور");
 define("_averageAttendance", "متوسط الحضور");
 define("_averageAbsent", "متوسط الغائب");
 define("_teacherWhoHasntTaken", "المعلم الذي لم يأخذ");
-define("_teachersWhoHaventTaken ", "المعلمين الذين لم يأخذوا ");
+define("_teachersWhoHaventTaken", "المعلمين الذين لم يأخذوا");
 define("_whenDoYouWantToRecalculateTheDailyAttendance", "متى تريد إعادة حساب الحضور اليومي");
 define("_noDuplicatesFound", "لم يتم العثور على تكرارات");
 define("_coursePeriodID", "معرف فترة الدورة");
@@ -1967,4 +1967,6 @@ define('_reportCardGradingScale','مقياس تقييم بطاقة التقري�
 define("_noStudentIsAssociatedWithTheParentForTheCurrentDate", "لا يوجد طالب مرتبط بالوالد في التاريخ الحالي.");
 define("_eitherTheStudentIsNoLongerActiveOrStartingSchoolInAFutureDate", "إما أن الطالب لم يعد نشطًا أو يبدأ الدراسة في تاريخ مستقبلي.");
 define("_pleaseContactTheSchoolAdministrationForMoreInformation", "يرجى التواصل مع إدارة المدرسة لمزيد من المعلومات.");
+define("ROOM_ID","ROOM_ID");
+define("generalInfo","معلومات عامة");
 ?>
