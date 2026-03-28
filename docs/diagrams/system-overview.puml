@@ -1,0 +1,72 @@
+@startuml system-overview
+!theme plain
+title openSIS Classic - System Overview
+
+left to right direction
+
+actor "Super Admin" as SA
+actor "Administrator" as Admin
+actor "Teacher" as Teacher
+actor "Parent" as Parent
+actor "Student" as Student
+
+package "openSIS Classic" {
+    rectangle "School Setup" as SS #LightBlue
+    rectangle "Students" as STU #LightGreen
+    rectangle "Users" as USR #LightYellow
+    rectangle "Scheduling" as SCH #LightCoral
+    rectangle "Grades" as GRD #Plum
+    rectangle "Attendance" as ATT #LightSalmon
+    rectangle "Eligibility" as ELG #PaleGreen
+    rectangle "Messaging" as MSG #LightCyan
+    rectangle "Tools" as TLS #Silver
+}
+
+SA --> SS
+SA --> STU
+SA --> USR
+SA --> SCH
+SA --> GRD
+SA --> ATT
+SA --> ELG
+SA --> MSG
+SA --> TLS
+
+Admin --> SS
+Admin --> STU
+Admin --> USR
+Admin --> SCH
+Admin --> GRD
+Admin --> ATT
+Admin --> ELG
+Admin --> MSG
+
+Teacher --> SS
+Teacher --> STU
+Teacher --> USR
+Teacher --> SCH
+Teacher --> GRD
+Teacher --> ATT
+Teacher --> ELG
+Teacher --> MSG
+
+Parent --> SS
+Parent --> STU
+Parent --> USR
+Parent --> SCH
+Parent --> GRD
+Parent --> ATT
+Parent --> ELG
+Parent --> MSG
+
+Student --> MSG
+
+note right of TLS
+  Admin only
+end note
+
+note right of MSG
+  All roles including Student
+end note
+
+@enduml

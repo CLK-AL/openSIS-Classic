@@ -1,0 +1,102 @@
+@startuml grades
+!theme plain
+title Grades Module - Menu Workflows
+
+|Admin|
+start
+:Grades;
+
+:Report Cards;
+note right: ReportCards.php
+:Transcripts;
+note right: Transcripts.php
+
+partition "Reports" {
+  :Teacher Completion;
+  note right: TeacherCompletion.php
+  :Grade Breakdown;
+  note right: GradeBreakdown.php
+  :Student Final Grades;
+  note right: FinalGrades.php
+  :GPA / Class Rank List;
+  note right: GPARankList.php
+  :Progress Reports;
+  note right: AdminProgressReports.php
+  :Honor Roll;
+  note right: HonorRoll.php
+}
+
+partition "Setup" {
+  :Report Card Grades;
+  note right: ReportCardGrades.php
+  :Report Card Comments;
+  note right: ReportCardComments.php
+  :Honor Roll Setup;
+  note right: HonorRollSetup.php
+}
+
+partition "Utilities" {
+  :Edit Report Card Grades;
+  note right: EditReportCardGrades.php
+  :Add/Edit Historical Marking Periods;
+  note right: EditHistoryMarkingPeriods.php
+  :Add/Edit Historical Report Card Grades;
+  note right: HistoricalReportCardGrades.php
+}
+
+stop
+
+|Teacher|
+start
+:Grades;
+
+:Input Final Grades;
+note right: InputFinalGrades.php
+:Report Cards;
+note right: ReportCards.php
+
+partition "Gradebook" {
+  :Grades;
+  note right: Grades.php
+  :Assignments;
+  note right: Assignments.php
+  :Anomalous Grades;
+  note right: AnomalousGrades.php
+  :Progress Reports;
+  note right: ProgressReports.php
+}
+
+partition "Reports" {
+  :Student Grades;
+  note right: StudentGrades.php
+  :Final Grades;
+  note right: FinalGrades.php
+}
+
+partition "Setup" {
+  :Configuration;
+  note right: Configuration.php
+  :Report Card Grades;
+  :Report Card Comments;
+}
+
+stop
+
+|Parent|
+start
+:Grades;
+:Gradebook Grades;
+note right: StudentGrades.php
+:Final Grades;
+note right: FinalGrades.php
+:Report Cards;
+note right: ReportCards.php
+:Progress Reports;
+note right: ParentProgressReports.php
+:Transcripts;
+note right: Transcripts.php
+:GPA Class Rank;
+note right: GPARankList.php
+stop
+
+@enduml

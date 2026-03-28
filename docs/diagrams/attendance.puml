@@ -1,0 +1,63 @@
+@startuml attendance
+!theme plain
+title Attendance Module - Menu Workflows
+
+|Admin|
+start
+:Attendance;
+
+:Administration;
+note right: Administration.php
+:Add Absences;
+note right: AddAbsences.php
+
+partition "Reports" {
+  :Attendance Report;
+  note right: AttendanceData.php?list_by_day=true
+  :Average Daily Attendance;
+  note right: Percent.php
+  :Average Attendance by Day;
+  note right: Percent.php?list_by_day=true
+  :Attendance Chart;
+  note right: DailySummary.php
+  :Absence Summary;
+  note right: StudentSummary.php
+  :Teacher Completion;
+  note right: TeacherCompletion.php
+}
+
+partition "Utilities" {
+  :Recalculate Daily Attendance;
+  note right: FixDailyAttendance.php
+  :Delete Duplicate Attendance;
+  note right: DuplicateAttendance.php
+}
+
+partition "Setup" {
+  :Attendance Codes;
+  note right: AttendanceCodes.php
+}
+
+stop
+
+|Teacher|
+start
+:Attendance;
+:Take Attendance;
+note right: TakeAttendance.php
+:Attendance Chart;
+note right: DailySummary.php
+:Absence Summary;
+note right: StudentSummary.php
+stop
+
+|Parent|
+start
+:Attendance;
+:Absences;
+note right: StudentSummary.php
+:Daily Summary;
+note right: DailySummary.php
+stop
+
+@enduml

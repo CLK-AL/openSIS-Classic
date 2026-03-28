@@ -1,0 +1,153 @@
+@startuml data-model
+!theme plain
+title openSIS Classic - Core Data Model (Simplified)
+
+skinparam linetype ortho
+
+entity "staff" as staff {
+  * staff_id : INT <<PK>>
+  --
+  current_school_id : INT <<FK>>
+  first_name : VARCHAR
+  last_name : VARCHAR
+  profile : ENUM(admin,teacher)
+  profile_id : INT
+  email : VARCHAR
+  is_disable : CHAR(1)
+}
+
+entity "students" as students {
+  * student_id : INT <<PK>>
+  --
+  first_name : VARCHAR
+  last_name : VARCHAR
+  middle_name : VARCHAR
+  gender : VARCHAR
+  ethnicity : VARCHAR
+  birthdate : DATE
+  username : VARCHAR
+}
+
+entity "school_years" as sy {
+  * marking_period_id : INT <<PK>>
+  --
+  syear : INT
+  school_id : INT <<FK>>
+  title : VARCHAR
+  start_date : DATE
+  end_date : DATE
+}
+
+entity "schools" as schools {
+  * id : INT <<PK>>
+  --
+  title : VARCHAR
+  address : VARCHAR
+  city : VARCHAR
+  state : VARCHAR
+  principal : VARCHAR
+}
+
+entity "courses" as courses {
+  * course_id : INT <<PK>>
+  --
+  syear : INT
+  school_id : INT <<FK>>
+  subject_id : INT <<FK>>
+  title : VARCHAR
+  grade_level : INT
+}
+
+entity "course_periods" as cp {
+  * course_period_id : INT <<PK>>
+  --
+  course_id : INT <<FK>>
+  teacher_id : INT <<FK>>
+  room : VARCHAR
+  total_seats : INT
+  marking_period_id : INT <<FK>>
+}
+
+entity "schedule" as sched {
+  * student_id : INT <<FK>>
+  * course_period_id : INT <<FK>>
+  --
+  start_date : DATE
+  end_date : DATE
+  marking_period_id : INT <<FK>>
+}
+
+entity "attendance_period" as attp {
+  * student_id : INT <<FK>>
+  * course_period_id : INT <<FK>>
+  * school_date : DATE
+  --
+  attendance_code : INT
+  remarks : TEXT
+}
+
+entity "gradebook_grades" as gbg {
+  * student_id : INT <<FK>>
+  * assignment_id : INT <<FK>>
+  --
+  points : DECIMAL
+  comment : TEXT
+}
+
+entity "gradebook_assignments" as gba {
+  * assignment_id : INT <<PK>>
+  --
+  course_period_id : INT <<FK>>
+  assignment_type_id : INT
+  title : VARCHAR
+  assigned_date : DATE
+  due_date : DATE
+  points : DECIMAL
+}
+
+entity "report_card_grades" as rcg {
+  * id : INT <<PK>>
+  --
+  syear : INT
+  school_id : INT <<FK>>
+  grade_scale_id : INT
+  title : VARCHAR
+  break_off : DECIMAL
+}
+
+entity "student_enrollment" as enroll {
+  * id : INT <<PK>>
+  --
+  student_id : INT <<FK>>
+  syear : INT
+  school_id : INT <<FK>>
+  grade_id : INT
+  start_date : DATE
+  end_date : DATE
+  enrollment_code : INT
+  drop_code : INT
+}
+
+entity "i18n" as i18n {
+  * translation_key : VARCHAR
+  * lang : VARCHAR(10)
+  --
+  translation : TEXT
+  last_updated : TIMESTAMP
+  updated_by : INT
+}
+
+schools ||--|{ sy : contains
+schools ||--|{ courses : offers
+courses ||--|{ cp : has periods
+cp }|--|| staff : taught by
+cp ||--|{ sched : enrolls
+students ||--|{ sched : scheduled in
+students ||--|{ enroll : enrolled at
+students ||--|{ attp : tracked
+cp ||--|{ attp : attendance for
+cp ||--|{ gba : assignments
+gba ||--|{ gbg : grades
+students ||--|{ gbg : receives
+
+@enduml

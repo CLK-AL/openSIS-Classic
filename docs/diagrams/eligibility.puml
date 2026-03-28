@@ -1,0 +1,46 @@
+@startuml eligibility
+!theme plain
+title Eligibility / Extracurricular Module - Menu Workflows
+
+|Admin|
+start
+:Eligibility;
+
+:Student Screen;
+note right: Student.php
+:Add Activity;
+note right: AddActivity.php
+
+partition "Reports" {
+  :Student List;
+  note right: StudentList.php
+  :Teacher Completion;
+  note right: TeacherCompletion.php
+}
+
+partition "Setup" {
+  :Activities;
+  note right: Activities.php
+  :Entry Times;
+  note right: EntryTimes.php
+}
+
+stop
+
+|Teacher|
+start
+:Eligibility;
+:Enter Extracurricular;
+note right: EnterEligibility.php
+stop
+
+|Parent|
+start
+:Eligibility;
+:Student Screen;
+note right: Student.php
+:Student List;
+note right: StudentList.php
+stop
+
+@enduml

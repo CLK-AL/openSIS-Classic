@@ -1,0 +1,96 @@
+@startuml school-setup
+!theme plain
+title School Setup Module - Menu Workflows
+
+|Admin|
+start
+:School Setup;
+
+fork
+  :Portal Notes;
+  note right: PortalNotes.php
+fork again
+  :Marking Periods;
+  note right: MarkingPeriods.php
+fork again
+  :Calendars;
+  note right: Calendar.php
+fork again
+  :Periods;
+  note right: Periods.php
+fork again
+  :Grade Levels;
+  note right: GradeLevels.php
+fork again
+  :Sections;
+  note right: Sections.php
+fork again
+  :Rooms;
+  note right: Rooms.php
+end fork
+
+partition "School" {
+  fork
+    :School Information;
+    note right: Schools.php
+  fork again
+    :Add a School;
+    note right: Schools.php?new_school=true
+  fork again
+    :Copy School;
+    note right: CopySchool.php
+  fork again
+    :System Preferences;
+    note right: SystemPreference.php
+  fork again
+    :School Custom Fields;
+    note right: SchoolCustomFields.php
+  end fork
+}
+
+partition "Courses" {
+  fork
+    :Course Manager;
+    note right: Courses.php
+  fork again
+    :Course Catalog;
+    note right: CourseCatalog.php
+  fork again
+    :Print Catalog by Term;
+    note right: PrintCatalog.php
+  fork again
+    :Print Catalog by Grade Level;
+    note right: PrintCatalogGradeLevel.php
+  fork again
+    :Print All Courses;
+    note right: PrintAllCourses.php
+  fork again
+    :Teacher Re-Assignment;
+    note right: TeacherReassignment.php
+  end fork
+}
+
+stop
+
+|Teacher|
+start
+:School Setup;
+:School Information;
+:Marking Periods;
+:Calendar;
+partition "Courses" {
+  :Course Manager;
+  :Course Catalog;
+  :Print Catalog by Term;
+  :Print All Courses;
+}
+stop
+
+|Parent|
+start
+:School Setup;
+:School Information;
+:Calendar;
+stop
+
+@enduml

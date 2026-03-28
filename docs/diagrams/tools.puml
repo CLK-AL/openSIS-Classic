@@ -1,0 +1,41 @@
+@startuml tools
+!theme plain
+title Tools Module - Menu Workflows (Admin Only)
+
+|Admin|
+start
+:Tools;
+
+:Access Log;
+note right: LogDetails.php
+
+:Delete Log;
+note right: DeleteLog.php
+
+:Rollover;
+note right: Rollover.php
+
+:Backup Database;
+note right: Backup.php
+
+:Data Import Utility;
+note right: DataImport.php
+
+:API Token;
+note right: GenerateApi.php
+
+partition "Reports" {
+  :At a Glance;
+  note right: Reports.php?func=Basic
+  :Institute Reports;
+  note right: Reports.php?func=Ins_r
+  :Institute Custom Field Reports;
+  note right: Reports.php?func=Ins_cf
+}
+
+:Translation Manager;
+note right: TranslationManager.php
+
+stop
+
+@enduml

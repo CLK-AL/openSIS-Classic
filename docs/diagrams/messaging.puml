@@ -1,0 +1,30 @@
+@startuml messaging
+!theme plain
+title Messaging Module - Menu Workflows
+
+|All Roles|
+note
+  Same menu for Admin, Teacher, Parent, and Student
+end note
+
+start
+:Messaging;
+
+:Inbox;
+note right: Inbox.php
+
+:Compose;
+note right: Compose.php
+
+:Sent Message;
+note right: SentMail.php
+
+:Trash;
+note right: Trash.php
+
+:Groups;
+note right: Group.php
+
+stop
+
+@enduml

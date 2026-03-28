@@ -1,0 +1,68 @@
+@startuml students
+!theme plain
+title Students Module - Menu Workflows
+
+|Admin|
+start
+:Students;
+
+:Student Info;
+note right: Student.php
+:Add a Student;
+note right: Student.php&include=GeneralInfoInc&student_id=new
+:Group Assign Student Info;
+note right: AssignOtherInfo.php
+:Student Re Enroll;
+note right: StudentReenroll.php
+
+partition "Reports" {
+  :Advanced Report;
+  note right: AdvancedReport.php
+  :Add/Drop Report;
+  note right: AddDrop.php
+  :Print Letters;
+  note right: Letters.php
+  :Print Mailing Labels;
+  note right: MailingLabels.php
+  :Print Student Labels;
+  note right: StudentLabels.php
+  :Print Student Info;
+  note right: PrintStudentInfo.php
+  :Print Student Contact Info;
+  note right: PrintStudentContactInfo.php
+  :Print Goals & Progresses;
+  note right: GoalReport.php
+  :Student Enrollment Report;
+  note right: EnrollmentReport.php
+}
+
+partition "Setup" {
+  :Student Fields;
+  note right: StudentFields.php
+  :Enrollment Codes;
+  note right: EnrollmentCodes.php
+}
+
+stop
+
+|Teacher|
+start
+:Students;
+:Student Info;
+:Associated Parents;
+note right: AddUsers.php
+partition "Reports" {
+  :Advanced Report;
+  :Print Student Labels;
+}
+stop
+
+|Parent|
+start
+:Students;
+:Student Info;
+:Change Password;
+note right: ChangePassword.php
+stop
+
+@enduml

@@ -1,0 +1,75 @@
+@startuml users
+!theme plain
+title Users Module - Menu Workflows
+
+|Admin|
+start
+:Users;
+
+:Preferences;
+note right: Preferences.php
+
+partition "Reports" {
+  :User Advanced Report;
+  note right: UserAdvancedReport.php
+  :Staff Advanced Report;
+  note right: UserAdvancedReportStaff.php
+}
+
+partition "Parent" {
+  :Parent Info;
+  note right: User.php
+}
+
+partition "Staff" {
+  :Staff Info;
+  note right: Staff.php
+  :Add a Staff;
+  note right: Staff.php&staff_id=new
+}
+
+partition "Setup" {
+  :Profiles;
+  note right: Profiles.php
+  :Parent Fields;
+  note right: UserFields.php
+  :Staff Fields;
+  note right: StaffFields.php
+}
+
+partition "Teacher Programs" {
+  :Input Final Grades;
+  note right: TeacherPrograms.php?include=grades/InputFinalGrades.php
+  :Gradebook Grades;
+  note right: TeacherPrograms.php?include=grades/Grades.php
+  :Progress Reports;
+  note right: TeacherPrograms.php?include=grades/ProgressReports.php
+  :Take Attendance;
+  note right: TeacherPrograms.php?include=attendance/TakeAttendance.php
+  :Missing Attendance;
+  note right: TeacherPrograms.php?include=attendance/MissingAttendance.php
+  :Enter Extracurricular;
+  note right: TeacherPrograms.php?include=eligibility/EnterEligibility.php
+}
+
+stop
+
+|Teacher|
+start
+:Users;
+:My Info;
+note right: Staff.php
+:Preferences;
+note right: Preferences.php
+stop
+
+|Parent|
+start
+:Users;
+:My Info;
+note right: User.php
+:Preferences;
+note right: Preferences.php
+stop
+
+@enduml

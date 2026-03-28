@@ -1,0 +1,84 @@
+@startuml authentication-flow
+!theme plain
+title Authentication & Request Flow
+
+actor User
+participant "Browser" as B
+participant "index.php\n(Login)" as IDX
+participant "Modules.php\n(Router)" as MOD
+participant "Warehouse.php\n(Bootstrap)" as WH
+participant "language.php\n(i18n)" as LANG
+participant "CSRFSecure" as CSRF
+participant "Database" as DB
+
+== Login Flow ==
+
+User -> B : Navigate to site
+B -> IDX : GET index.php
+IDX -> WH : Warehouse('header')
+WH -> WH : session_start()
+WH -> WH : Load all functions/
+WH -> LANG : Include language.php
+LANG -> LANG : Detect lang from\nREQUEST > SESSION > COOKIE
+LANG -> LANG : Include lang_XX.php
+IDX -> CSRF : CreateTokenField()
+CSRF -> CSRF : Generate 32-byte token
+CSRF --> IDX : <hidden input TOKEN>
+IDX --> B : Login page HTML
+
+User -> B : Enter credentials
+B -> IDX : POST username, password, TOKEN
+IDX -> CSRF : ValidateToken(TOKEN)
+CSRF -> CSRF : Check SESSION token\n+ expiry (60s)
+
+alt CSRF Valid
+  IDX -> DB : SELECT from login_authentication
+  DB --> IDX : User record + hash
+
+  IDX -> IDX : VerifyHash(password, hash)
+
+  alt Password Valid
+    IDX -> IDX : Set SESSION:\nSTAFF_ID, USERNAME,\nPROFILE_ID, UserSchool,\nUserSyear, UserMP
+    IDX -> IDX : session_regenerate_id()
+    IDX --> B : Redirect to Modules.php
+  else Password Invalid
+    IDX --> B : "Incorrect username or password"
+  end
+else CSRF Invalid
+  IDX --> B : Reject (token expired/forged)
+end
+
+== Authenticated Request Flow ==
+
+User -> B : Click menu item
+B -> MOD : GET Modules.php?modname=students/Student.php
+MOD -> WH : Warehouse('header')
+WH -> WH : Check SESSION\n(STAFF_ID or STUDENT_ID)
+
+alt Authenticated
+  WH -> WH : langDirection() -> dir="rtl"|"ltr"
+  WH --> MOD : HTML head with dir attribute
+  MOD -> MOD : Load CSS/JS\n(+ rtl.css if RTL)
+  MOD -> MOD : Check Menu permissions\nfor user profile
+  MOD -> MOD : include(modname)
+  MOD --> B : Module page HTML
+else Not Authenticated
+  WH --> B : Redirect to index.php
+end
+
+== Form Submission Flow ==
+
+User -> B : Fill form, click Save
+B -> MOD : POST with TOKEN + data
+MOD -> CSRF : ValidateToken(TOKEN)
+alt Valid
+  MOD -> MOD : clean_param() inputs
+  MOD -> MOD : sqlSecurityFilter() values
+  MOD -> DB : INSERT/UPDATE query
+  DB --> MOD : Result
+  MOD --> B : Success message + page
+else Invalid
+  MOD --> B : Reject submission
+end
+
+@enduml

@@ -1,0 +1,55 @@
+@startuml role-access-matrix
+!theme plain
+title Role-Based Access Matrix
+
+skinparam defaultTextAlignment center
+
+map "Admin" as admin {
+  School Setup => Full access (22 pages)
+  Students => Full access + Add/Enroll (14 pages)
+  Users => Full access + Profiles (16 pages)
+  Scheduling => Full access + Scheduler (20 pages)
+  Grades => Reports + Setup + Utilities (15 pages)
+  Attendance => Admin + Reports + Setup (12 pages)
+  Eligibility => Full access + Setup (7 pages)
+  Messaging => Full access (5 pages)
+  Tools => Full access (10 pages)
+}
+
+map "Teacher" as teacher {
+  School Setup => View only (7 pages)
+  Students => View + Labels (4 pages)
+  Users => My Info + Preferences (2 pages)
+  Scheduling => View + Print (4 pages)
+  Grades => Gradebook + Input (12 pages)
+  Attendance => Take + View (3 pages)
+  Eligibility => Enter only (1 page)
+  Messaging => Full access (5 pages)
+  Tools => No access
+}
+
+map "Parent" as parent {
+  School Setup => View only (2 pages)
+  Students => View + Password (2 pages)
+  Users => My Info + Preferences (2 pages)
+  Scheduling => View + Requests (4 pages)
+  Grades => View grades (6 pages)
+  Attendance => View only (2 pages)
+  Eligibility => View only (2 pages)
+  Messaging => Full access (5 pages)
+  Tools => No access
+}
+
+map "Student" as student {
+  School Setup => No access
+  Students => No access
+  Users => No access
+  Scheduling => No access
+  Grades => No access
+  Attendance => No access
+  Eligibility => No access
+  Messaging => Full access (5 pages)
+  Tools => No access
+}
+
+@enduml

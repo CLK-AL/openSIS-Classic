@@ -1,0 +1,78 @@
+@startuml scheduling
+!theme plain
+title Scheduling Module - Menu Workflows
+
+|Admin|
+start
+:Scheduling;
+
+:Student Schedule;
+note right: Schedule.php
+:View Schedule;
+note right: ViewSchedule.php
+:Student Requests;
+note right: Requests.php
+:Group Schedule;
+note right: MassSchedule.php
+:Group Requests;
+note right: MassRequests.php
+:Group Drops;
+note right: MassDrops.php
+:Group Delete;
+note right: MassDelete.php
+
+partition "Reports" {
+  :Schoolwide Schedule Report;
+  note right: SchoolwideScheduleReport.php
+  :Print Schedules;
+  note right: PrintSchedules.php
+  :Print Class Lists;
+  note right: PrintClassLists.php
+  :Print Class Pictures;
+  note right: PrintClassPictures.php
+  :Print Requests;
+  note right: PrintRequests.php
+  :Schedule Report;
+  note right: ScheduleReport.php
+  :Requests Report;
+  note right: RequestsReport.php
+  :Unfilled Requests;
+  note right: UnfilledRequests.php
+  :Incomplete Schedules;
+  note right: IncompleteSchedules.php
+  :Add/Drop Report;
+  note right: AddDrop.php
+}
+
+partition "Setup" {
+  :Run Scheduler;
+  note right: Scheduler.php
+}
+
+stop
+
+|Teacher|
+start
+:Scheduling;
+:View Schedule;
+partition "Reports" {
+  :Print Schedules;
+  :Print Class Lists;
+  :Print Class Pictures;
+}
+stop
+
+|Parent|
+start
+:Scheduling;
+:Schedule;
+note right: ViewSchedule.php
+:Class Pictures;
+note right: PrintClassPictures.php
+:Student Requests;
+note right: Requests.php
+:Schedule Report;
+note right: StudentScheduleReport.php
+stop
+
+@enduml
