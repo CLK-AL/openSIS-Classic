@@ -2,6 +2,10 @@
 .gitignore
 vendor
 node_modules
+e2e
+playwright.config.ts
+playwright-report
+test-results
 *.md
 bootstrap-upgrade.md
 tests.md

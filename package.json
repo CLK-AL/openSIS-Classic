@@ -1,0 +1,29 @@
+{
+  "name": "opensis-classic",
+  "version": "1.0.0",
+  "description": "Community Edition version 9.3 (Rel date: 06/02/2026)\r Created by [OS4ED](https://www.os4ed.com/)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test:e2e": "npx playwright test",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:auth": "npx playwright test e2e/auth.spec.ts",
+    "test:e2e:nav": "npx playwright test e2e/navigation.spec.ts",
+    "test:e2e:rtl": "npx playwright test e2e/rtl.spec.ts",
+    "test:e2e:report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:39199/git/CLK-AL/openSIS-Classic"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}
