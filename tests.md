@@ -2,7 +2,7 @@
 
 ## Overview
 
-PHPUnit 11 test suite with **392 tests** and **768 assertions**, plus **62 Playwright E2E browser tests**.
+PHPUnit 11 test suite with **392 tests** and **768 assertions**, plus **113 Playwright E2E browser tests**.
 
 ### Requirements
 
@@ -81,7 +81,7 @@ tests/
     ├── DBGetWorkflowTest.php                  #  12 tests (TSV mock)
     └── DonationClassroomTest.php              #  20 tests (SQLite E2E)
 
-e2e/                                           # Playwright E2E browser tests (62 tests)
+e2e/                                           # Playwright E2E browser tests (113 tests)
 ├── fixtures.ts                                # Login/navigate helpers
 ├── auth.spec.ts                               #  10 tests
 ├── navigation.spec.ts                         #   4 tests
@@ -92,9 +92,12 @@ e2e/                                           # Playwright E2E browser tests (6
 ├── grades.spec.ts                             #   7 tests
 ├── attendance.spec.ts                         #   5 tests
 ├── messaging.spec.ts                          #   5 tests
-├── tools.spec.ts                              #   7 tests
+├── tools.spec.ts                              #  14 tests (+ vCard, iCal)
 ├── eligibility.spec.ts                        #   3 tests
-└── rtl.spec.ts                                #   7 tests
+├── rtl.spec.ts                                #   7 tests
+├── library.spec.ts                            #   8 tests (catalog, checkout, overdue)
+└── inventory.spec.ts                          #  24 tests (equipment, trips, birthdays,
+                                               #      finance, donations, student needs)
 ```
 
 ---

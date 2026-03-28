@@ -23,7 +23,7 @@ openSIS is a Student Information System for K-12, trade schools, and higher educ
 | **vCard/iCal** | Export students/staff/parents as .vcf contacts; export events/school days/marking periods as .ics; import .vcf and .ics files |
 | **DB Migration** | `migrate-db.php` — CLI tool to migrate between SQLite, MySQL, and PostgreSQL with automatic type mapping |
 | **PHPUnit Tests** | 392 tests / 768 assertions: security, input validation, date/time, UI generation, DB-dependent via TSV mock and SQLite, full donation-classroom E2E simulation |
-| **Playwright E2E** | 62 browser tests across 11 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
+| **Playwright E2E** | 113 browser tests across 14 spec files covering all 11 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
 | **Architecture Docs** | 16 PlantUML diagrams: module workflows per role, authentication flow, data model, role-access matrix, test coverage map |
 | **Bug Fixes** | Missing closing quote on `dir="ltr"` (Warehouse.php), uninitialized `$langCode` (language.php), missing semicolon (supportedLanguages.php), debug var_dumps removed (LoginInc.php), `langDirection()` null-safety |
 
@@ -102,7 +102,7 @@ composer install
 ./vendor/bin/phpunit --testsuite Integration  # integration only
 ```
 
-### Playwright E2E (62 tests)
+### Playwright E2E (113 tests)
 
 ```bash
 npm install
@@ -153,7 +153,7 @@ openSIS-Classic/
 │   └── css/rtl.css                   # RTL stylesheet
 ├── docs/
 │   └── diagrams/*.puml               # 16 PlantUML diagrams
-├── e2e/                              # 62 Playwright E2E tests
+├── e2e/                              # 113 Playwright E2E tests
 │   ├── fixtures.ts                   # Login/navigate helpers
 │   ├── auth.spec.ts                  # Authentication tests
 │   ├── rtl.spec.ts                   # RTL tests
