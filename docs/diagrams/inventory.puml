@@ -1,0 +1,66 @@
+@startuml inventory
+!theme plain
+title Inventory Module - Menu Workflows
+
+|Admin|
+start
+:Inventory;
+
+:Equipment Catalog;
+note right: Equipment.php\nCRUD with serial, asset tag,\ncondition, cost, warranty
+
+:Checkout / Return;
+note right: Checkout.php\nQuantity tracking\nStaff/student borrowers
+
+:Maintenance Log;
+note right: Maintenance.php\nPreventive, repair, calibration\nCost + next-due scheduling
+
+partition "Activities" {
+  :Field Trips & Tours;
+  note right: FieldTrips.php\nDestination, dates, times\nCost/budget, iCal export
+
+  :Birthdays & Gifts;
+  note right: Birthdays.php\nMonthly calendar view\nGift budget/collection\niCal export
+}
+
+partition "Finance" {
+  :Collections & Payments;
+  note right: Finance.php\n8 categories: Field Trip,\nBirthday, Lab Fee, etc.\nReceipt tracking
+
+  :Finance Report;
+  note right: FinanceReport.php\nCollected/pending/overdue\nBreakdown by category
+}
+
+partition "Reports" {
+  :Inventory Report;
+  note right: EquipmentReport.php\nBy category, condition\nTotal asset value
+}
+
+partition "Setup" {
+  :Categories;
+  note right: Categories.php\n8 defaults seeded
+
+  :Locations;
+  note right: Locations.php\nRoom + building
+}
+
+stop
+
+|Teacher|
+start
+:Inventory;
+:Equipment Catalog;
+:Checkout / Return;
+:Field Trips & Tours;
+:Birthdays & Gifts;
+:Collections & Payments;
+stop
+
+|Parent|
+start
+:Inventory;
+:Field Trips & Tours;
+:Birthdays;
+stop
+
+@enduml

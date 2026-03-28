@@ -1,0 +1,44 @@
+@startuml library
+!theme plain
+title Library (Books) Module - Menu Workflows
+
+|Admin|
+start
+:Library;
+
+:Book Catalog;
+note right: Books.php\nSearch, add/edit/delete books\nISBN, author, category, barcode
+
+:Checkout / Return;
+note right: Checkout.php\nCheck out to student/staff\nReturn with date tracking
+
+:Overdue Books;
+note right: Overdue.php\nDays overdue calculation
+
+partition "Reports" {
+  :Inventory Report;
+  note right: BookReport.php\nTotals, available, checked out\nBreakdown by category
+}
+
+partition "Setup" {
+  :Categories;
+  note right: Categories.php\nFiction, Science, etc.
+}
+
+stop
+
+|Teacher|
+start
+:Library;
+:Book Catalog;
+:Checkout / Return;
+:Overdue Books;
+stop
+
+|Parent|
+start
+:Library;
+:Book Catalog;
+stop
+
+@enduml

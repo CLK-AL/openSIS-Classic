@@ -18,6 +18,8 @@ package "openSIS Classic" {
     rectangle "Grades" as GRD #Plum
     rectangle "Attendance" as ATT #LightSalmon
     rectangle "Eligibility" as ELG #PaleGreen
+    rectangle "Library" as LIB #Wheat
+    rectangle "Inventory" as INV #PeachPuff
     rectangle "Messaging" as MSG #LightCyan
     rectangle "Tools" as TLS #Silver
 }
@@ -29,6 +31,8 @@ SA --> SCH
 SA --> GRD
 SA --> ATT
 SA --> ELG
+SA --> LIB
+SA --> INV
 SA --> MSG
 SA --> TLS
 
@@ -39,6 +43,8 @@ Admin --> SCH
 Admin --> GRD
 Admin --> ATT
 Admin --> ELG
+Admin --> LIB
+Admin --> INV
 Admin --> MSG
 
 Teacher --> SS
@@ -48,6 +54,8 @@ Teacher --> SCH
 Teacher --> GRD
 Teacher --> ATT
 Teacher --> ELG
+Teacher --> LIB
+Teacher --> INV
 Teacher --> MSG
 
 Parent --> SS
@@ -57,12 +65,19 @@ Parent --> SCH
 Parent --> GRD
 Parent --> ATT
 Parent --> ELG
+Parent --> LIB
+Parent --> INV
 Parent --> MSG
 
 Student --> MSG
 
 note right of TLS
   Admin only
+end note
+
+note right of INV
+  Includes Field Trips,
+  Birthdays, Finance
 end note
 
 note right of MSG

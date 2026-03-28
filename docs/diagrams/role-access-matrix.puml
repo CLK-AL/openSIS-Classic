@@ -12,8 +12,10 @@ map "Admin" as admin {
   Grades => Reports + Setup + Utilities (15 pages)
   Attendance => Admin + Reports + Setup (12 pages)
   Eligibility => Full access + Setup (7 pages)
+  Library => Catalog + Checkout + Reports + Setup (5 pages)
+  Inventory => Equipment + Trips + Finance + Reports (10 pages)
   Messaging => Full access (5 pages)
-  Tools => Full access (10 pages)
+  Tools => Full access + vCard/iCal/Translation (13 pages)
 }
 
 map "Teacher" as teacher {
@@ -24,6 +26,8 @@ map "Teacher" as teacher {
   Grades => Gradebook + Input (12 pages)
   Attendance => Take + View (3 pages)
   Eligibility => Enter only (1 page)
+  Library => Catalog + Checkout + Overdue (3 pages)
+  Inventory => Equipment + Trips + Birthdays + Finance (5 pages)
   Messaging => Full access (5 pages)
   Tools => No access
 }
@@ -36,6 +40,8 @@ map "Parent" as parent {
   Grades => View grades (6 pages)
   Attendance => View only (2 pages)
   Eligibility => View only (2 pages)
+  Library => Catalog only (1 page)
+  Inventory => Trips + Birthdays (2 pages)
   Messaging => Full access (5 pages)
   Tools => No access
 }
@@ -48,6 +54,8 @@ map "Student" as student {
   Grades => No access
   Attendance => No access
   Eligibility => No access
+  Library => No access
+  Inventory => No access
   Messaging => Full access (5 pages)
   Tools => No access
 }

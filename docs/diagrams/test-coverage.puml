@@ -76,6 +76,22 @@ package "DB-Dependent (TSV Mock)" <<Rectangle>> #LightGreen {
     rectangle "TsvMock\nTsvResultSet (test infra)" as tsvmock #90EE90
 }
 
+package "Import / Export" <<Rectangle>> #LightSalmon {
+    rectangle "VCardFnc\nbuildVCard / parseVCards" as vcard #90EE90
+    rectangle "ICalFnc\nicalHeader / buildEvent / parseICal" as ical #90EE90
+    rectangle "SqliteAdapter\nMySQL→SQLite translation" as sqlite #90EE90
+    rectangle "MigrateDb\nSQLite↔MySQL↔PostgreSQL" as migrate #90EE90
+}
+
+package "Modules" <<Rectangle>> #PeachPuff {
+    rectangle "Library\nBooks, Checkout, Overdue, Reports" as libmod #FFFFE0
+    rectangle "Inventory\nEquipment, Maintenance, Locations" as invmod #FFFFE0
+    rectangle "Field Trips\nTrips, Students, iCal export" as tripmod #FFFFE0
+    rectangle "Birthdays\nMonthly view, gifts, iCal export" as bdaymod #FFFFE0
+    rectangle "Finance\nCollections, Payments, Reports" as finmod #FFFFE0
+    rectangle "Translation Manager\ni18n table, import/export" as transmod #FFFFE0
+}
+
 package "DB-Dependent (untestable)" <<Rectangle>> #WhiteSmoke {
     rectangle "SaveDataFnc" as savedata #FFFFE0
     rectangle "GetStuListFnc" as stulist #FFFFE0

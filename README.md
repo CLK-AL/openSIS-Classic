@@ -15,6 +15,13 @@ openSIS is a Student Information System for K-12, trade schools, and higher educ
 | **Docker** | `Dockerfile` (PHP 8.3/Apache/Bookworm), `docker-compose.yml` (app + MySQL 8.0), `docker-entrypoint.sh` (auto-generates Data.php from env vars) |
 | **Local Install** | `install.sh` (Ubuntu/Debian/Fedora full install), `uninstall.sh`, `dev.sh` (PHP built-in server for development) |
 | **White-Label** | `WhiteLabelInc.php` + `assets/branding/` — drop in custom logo/favicon, configure app name and footer from one file |
+| **Library** | Book catalog with ISBN/author/barcode, checkout/return to students/staff, overdue tracking, category management, inventory reports |
+| **Inventory** | Lab equipment catalog with serial/asset tag/condition/warranty/cost, checkout with quantity tracking, maintenance log (preventive/repair/calibration) |
+| **Field Trips** | Trip planning with destination, dates, cost/budget, student enrollment with consent and payment tracking, iCal VEVENT export |
+| **Birthdays** | Monthly birthday calendar from student data, gift budget/collection tracking, status flow (collecting→purchased→delivered), iCal export |
+| **Finance** | Collections and payments from parents (8 categories: Field Trip, Birthday, Lab Fee, Book Fee, etc.), receipt tracking, finance reports |
+| **vCard/iCal** | Export students/staff/parents as .vcf contacts; export events/school days/marking periods as .ics; import .vcf and .ics files |
+| **DB Migration** | `migrate-db.php` — CLI tool to migrate between SQLite, MySQL, and PostgreSQL with automatic type mapping |
 | **PHPUnit Tests** | 332 tests / 575 assertions: security (CSRF, SQL injection, password hash), input validation (all PARAM_* types), date/time, UI generation, DB-dependent functions via TSV mock and SQLite |
 | **Playwright E2E** | 62 browser tests across all 9 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
 | **Architecture Docs** | 13 PlantUML diagrams: module workflows per role, authentication flow, data model, role-access matrix, test coverage map |
@@ -123,8 +130,10 @@ PlantUML diagrams in `docs/diagrams/`:
 | `grades.puml` | Grades menu workflow |
 | `attendance.puml` | Attendance menu workflow |
 | `eligibility.puml` | Eligibility menu workflow |
+| `library.puml` | Library (Books) menu workflow |
+| `inventory.puml` | Inventory + Field Trips + Birthdays + Finance |
 | `messaging.puml` | Messaging menu workflow |
-| `tools.puml` | Tools menu workflow |
+| `tools.puml` | Tools + vCard/iCal + Translation Manager |
 
 Render: `plantuml docs/diagrams/*.puml`
 
@@ -143,7 +152,7 @@ openSIS-Classic/
 │   ├── branding/                     # Custom logo/favicon drop-in
 │   └── css/rtl.css                   # RTL stylesheet
 ├── docs/
-│   └── diagrams/*.puml               # 13 PlantUML diagrams
+│   └── diagrams/*.puml               # 15 PlantUML diagrams
 ├── e2e/                              # 62 Playwright E2E tests
 │   ├── fixtures.ts                   # Login/navigate helpers
 │   ├── auth.spec.ts                  # Authentication tests
@@ -153,8 +162,13 @@ openSIS-Classic/
 │   ├── supportedLanguages.php        # Language registry
 │   ├── lang_en/ar/fr/es/he.php       # Translation files
 │   └── language.php                  # Language loader
-├── modules/tools/
-│   └── TranslationManager.php        # Translation Manager UI
+├── modules/
+│   ├── library/                      # Book catalog, checkout, overdue
+│   ├── inventory/                    # Equipment, trips, birthdays, finance
+│   └── tools/
+│       ├── TranslationManager.php    # Translation Manager UI
+│       ├── VCardExport.php           # vCard import/export
+│       └── ICalExport.php            # iCal import/export
 ├── tests/
 │   ├── bootstrap.php                 # Test setup
 │   ├── TsvMock.php                   # TSV-based DB mock

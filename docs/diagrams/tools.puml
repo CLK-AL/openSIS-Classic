@@ -34,7 +34,14 @@ partition "Reports" {
 }
 
 :Translation Manager;
-note right: TranslationManager.php
+note right: TranslationManager.php\ni18n DB table, import/export
+
+partition "Import / Export" {
+  :vCard Contacts;
+  note right: VCardExport.php\nStudents, staff, parents\nImport .vcf
+  :iCal Calendar;
+  note right: ICalExport.php\nEvents, school days,\nmarking periods\nImport .ics
+}
 
 stop
 

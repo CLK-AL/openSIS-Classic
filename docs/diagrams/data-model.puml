@@ -137,6 +137,77 @@ entity "i18n" as i18n {
   updated_by : INT
 }
 
+entity "library_books" as books {
+  * book_id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  title : VARCHAR
+  author : VARCHAR
+  isbn : VARCHAR
+  category_id : INT
+  total_copies : INT
+  available_copies : INT
+}
+
+entity "library_checkout" as libco {
+  * id : INT <<PK>>
+  --
+  book_id : INT <<FK>>
+  borrower_type : VARCHAR
+  borrower_id : INT
+  checkout_date : DATE
+  due_date : DATE
+  return_date : DATE
+  status : VARCHAR
+}
+
+entity "inventory_equipment" as equip {
+  * equipment_id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  name : VARCHAR
+  serial_number : VARCHAR
+  condition_status : VARCHAR
+  purchase_cost : DECIMAL
+  total_quantity : INT
+  available_quantity : INT
+}
+
+entity "inventory_field_trips" as trips {
+  * id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  title : VARCHAR
+  destination : VARCHAR
+  trip_date : DATE
+  cost_per_student : DECIMAL
+  total_budget : DECIMAL
+  status : VARCHAR
+}
+
+entity "inventory_finance" as fin {
+  * id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  category : VARCHAR
+  title : VARCHAR
+  student_id : INT <<FK>>
+  amount : DECIMAL
+  payment_type : VARCHAR
+  status : VARCHAR
+}
+
+entity "inventory_birthdays" as bday {
+  * id : INT <<PK>>
+  --
+  school_id : INT <<FK>>
+  student_id : INT <<FK>>
+  event_date : DATE
+  gift_budget : DECIMAL
+  collected_amount : DECIMAL
+  status : VARCHAR
+}
+
 schools ||--|{ sy : contains
 schools ||--|{ courses : offers
 courses ||--|{ cp : has periods
@@ -149,5 +220,11 @@ cp ||--|{ attp : attendance for
 cp ||--|{ gba : assignments
 gba ||--|{ gbg : grades
 students ||--|{ gbg : receives
+books ||--|{ libco : checked out
+students ||--|{ libco : borrows
+students ||--|{ fin : pays
+students ||--|{ bday : celebrates
+schools ||--|{ trips : organizes
+schools ||--|{ equip : owns
 
 @enduml
