@@ -1,0 +1,86 @@
+@startuml test-coverage
+!theme plain
+title openSIS Classic - Test Coverage Map
+
+skinparam defaultTextAlignment left
+skinparam rectangle {
+    roundCorner 10
+}
+
+legend top left
+  |= Color |= Status |
+  | <#90EE90> | Tested (unit + integration) |
+  | <#FFFFE0> | Not testable without DB |
+endlegend
+
+package "Security & Auth" <<Rectangle>> #LightBlue {
+    rectangle "CSRFSecurityFnc" as csrf #90EE90
+    rectangle "SqlSecurityFnc" as sql #90EE90
+    rectangle "PasswordHashFnc" as pwd #90EE90
+    rectangle "ParamLibFnc\nclean_param / optional_param" as param #90EE90
+    rectangle "HackingLogFnc" as hack #FFFFE0
+    rectangle "AuthorizationFnc" as auth #FFFFE0
+}
+
+package "Date & Time" <<Rectangle>> #LightCoral {
+    rectangle "MonthNwSwitchFnc" as mnw #90EE90
+    rectangle "DbDateFnc\nDBDate / DaySname\nMonthFormatter" as dbdate #90EE90
+    rectangle "SortFnc\nVerifyDate_sort / date_to_timestamp\npoint_to_number / percent_to_number\nrange_to_number / rank_to_number" as sort #90EE90
+    rectangle "PrepareDateFnc\nProperTime" as pdate #90EE90
+    rectangle "ProperDateFnc\nProperDateAY / ProperDateMAvr" as propdate #FFFFE0
+}
+
+package "Formatting & Math" <<Rectangle>> #Plum {
+    rectangle "PercentFnc" as pct #90EE90
+    rectangle "PragRepFnc\npar_rep / par_rep_all" as preg #90EE90
+    rectangle "ReindexResultsFnc" as reidx #90EE90
+    rectangle "CurrencyFnc" as curr #FFFFE0
+}
+
+package "i18n / Language" <<Rectangle>> #PaleGreen {
+    rectangle "langFnc\nlangDirection" as lang #90EE90
+    rectangle "supportedLanguages" as suplang #90EE90
+    rectangle "lang_en / ar / fr / es / he" as langfiles #90EE90
+}
+
+package "Browser & Environment" <<Rectangle>> #LightSalmon {
+    rectangle "BrowserFnc\nbrowser()" as browser #90EE90
+    rectangle "ShowVarFnc\nShowVar()" as showvar #90EE90
+    rectangle "UrlFnc\nget_string_between" as url #90EE90
+}
+
+package "HTML / UI Generation" <<Rectangle>> #LightCyan {
+    rectangle "ButtonsFnc\nButtons()" as btns #90EE90
+    rectangle "ErrorMessageFnc\nErrorMessage" as errmsg #90EE90
+    rectangle "DrawTabFnc\nDrawTab / DrawinactiveTab" as dtab #90EE90
+    rectangle "DrawHeaderFnc\nDrawHeader" as dhdr #90EE90
+    rectangle "PopTableFnc\nPopTable" as ptbl #90EE90
+    rectangle "DrawBlockFnc" as dblk #90EE90
+    rectangle "PreparePhpSelfFnc" as phpself #90EE90
+}
+
+package "Integration Tests" <<Rectangle>> #Gold {
+    rectangle "AuthenticationWorkflow\nCSRF + Password + Session" as intauth #90EE90
+    rectangle "InputValidationWorkflow\nclean_param + sqlSecurityFilter" as intinput #90EE90
+    rectangle "SessionSecurityWorkflow\nAccess control + Roles" as intsess #90EE90
+    rectangle "LanguageWorkflow\nLang select + RTL + Files" as intlang #90EE90
+    rectangle "DateWorkflow\nMonth conv + Time format" as intdate #90EE90
+}
+
+package "DB-Dependent (not unit testable)" <<Rectangle>> #WhiteSmoke {
+    rectangle "DbGetFnc" as dbget #FFFFE0
+    rectangle "UserFnc" as userfnc #FFFFE0
+    rectangle "SaveDataFnc" as savedata #FFFFE0
+    rectangle "GetStuListFnc" as stulist #FFFFE0
+    rectangle "SearchFnc" as search #FFFFE0
+    rectangle "ListOutputFnc" as listout #FFFFE0
+    rectangle "InputsFnc" as inputs #FFFFE0
+    rectangle "AllowEditFnc" as allow #FFFFE0
+    rectangle "AttendanceFnc" as attfnc #FFFFE0
+    rectangle "MakeLetterGradeFnc" as mlg #FFFFE0
+    rectangle "CustomFieldsFnc" as cf #FFFFE0
+    rectangle "GetMpFnc" as getmp #FFFFE0
+    rectangle "WidgetsFnc" as widgets #FFFFE0
+}
+
+@enduml
