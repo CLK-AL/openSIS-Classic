@@ -1969,4 +1969,21 @@ define("_eitherTheStudentIsNoLongerActiveOrStartingSchoolInAFutureDate", "إما
 define("_pleaseContactTheSchoolAdministrationForMoreInformation", "يرجى التواصل مع إدارة المدرسة لمزيد من المعلومات.");
 define("ROOM_ID","ROOM_ID");
 define("generalInfo","معلومات عامة");
+define("_dataHasBeenRolledoverFor", "تم ترحيل البيانات لـ");
+define("_fileUploadedSuccessfull", "تم تحميل الملف بنجاح");
+define("_assignmentType", "نوع المهمة");
+define("_checkingSchedulePleaseWait", "جارٍ التحقق من الجدول، يرجى الانتظار");
+define("_didNotRecieve", "لم يتلقَّ");
+define("_duplicateDataFoundRequestAlreadyExists", "تم العثور على بيانات مكررة. الطلب موجود بالفعل!");
+define("_first", "الأول");
+define("_forDatesYyyyMmDdForCheckboxesYAmpForLongTextItWillBeIgnored", "للتواريخ: YYYY-MM-DD، لمربعات الاختيار: Y ولللنص الطويل، سيتم تجاهله");
+define("_grade", "الدرجة");
+define("_noRecordsWereFound", "لم يتم العثور على سجلات");
+define("_officialInformation", "معلومات رسمية");
+define("_selectCourse", "اختر المقرر");
+define("_selectSubject", "اختر المادة");
+define("_studentsList", "قائمة الطلاب");
+define("_tokens", "الرموز");
+define("_useLastYearsIfMissing", "استخدم بيانات العام الماضي في حالة عدم التوفر");
+define("_youMustChooseAtLeastOnePeriodAndOneStudent", "يجب اختيار فترة واحدة وطالب واحد على الأقل");
 ?>

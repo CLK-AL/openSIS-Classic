@@ -1994,4 +1994,8 @@ define("_get", "Obtener");
 define("_printt", "Imprimir");
 define("_selectImageFile", "Seleccionar archivo de imagen");
 define("_withTeacherPeriod", "Con profesor y período");
+define("_dataHasBeenRolledoverFor", "Los datos se han transferido para");
+define("_didNotRecieve", "No recibió");
+define("_duplicateDataFoundRequestAlreadyExists", "Se encontraron datos duplicados. ¡La solicitud ya existe!");
+define("_forDatesYyyyMmDdForCheckboxesYAmpForLongTextItWillBeIgnored", "para fechas: AAAA-MM-DD, para casillas: S y para texto largo, será ignorado");
 ?>

@@ -2000,3 +2000,22 @@ define('link','link');
 define("ROOM_ID","ROOM_ID");
 define("generalInfo","General Info");
 define('students','Students');
+
+// Keys aligned from non-English language files
+define("_assignmentType", "Assignment Type");
+define("_checkingSchedulePleaseWait", "Checking schedule, please wait");
+define("_dataHasBeenRolledoverFor", "Data has been rolled over for");
+define("_didNotRecieve", "Did Not Receive");
+define("_duplicateDataFoundRequestAlreadyExists", "Duplicate data found. Request already exists!");
+define("_fileUploadedSuccessfull", "File uploaded successfully");
+define("_first", "First");
+define("_forDatesYyyyMmDdForCheckboxesYAmpForLongTextItWillBeIgnored", "for dates: YYYY-MM-DD, for checkboxes: Y & for long text, it will be ignored");
+define("_grade", "Grade");
+define("_noRecordsWereFound", "No records were found");
+define("_officialInformation", "Official Information");
+define("_selectCourse", "Select Course");
+define("_selectSubject", "Select Subject");
+define("_studentsList", "Students List");
+define("_tokens", "Tokens");
+define("_useLastYearsIfMissing", "Use last year's if missing");
+define("_youMustChooseAtLeastOnePeriodAndOneStudent", "You must choose at least one period and one student");

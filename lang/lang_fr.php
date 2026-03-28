@@ -2001,4 +2001,12 @@ define("_ventsVisibleTo", "Événements visibles pour");
 define("_youCannotModifyTheScheduleEnrolledDateAsItsClashingWithOtherDroppedCourse", "Vous ne pouvez pas modifier la date d'inscription à l'emploi du temps, car elle entre en conflit avec un autre cours abandonné");
 define("_youCannotScheduleAStudentIntoChatCourseDuringTheMarkingPeriodThatYouChoseThisCourseMeetsOn", "Vous ne pouvez pas inscrire un élève à ce cours pendant la période de notation que vous avez choisie. Ce cours a lieu le");
 define("_assigned Date", "Date attribuée");
+define("_assignmentType", "Type de devoir");
+define("_checkingSchedulePleaseWait", "Vérification de l'emploi du temps, veuillez patienter");
+define("_first", "Premier");
+define("_grade", "Note");
+define("_officialInformation", "Informations officielles");
+define("_studentsList", "Liste des élèves");
+define("_useLastYearsIfMissing", "Utiliser ceux de l'année dernière si manquants");
+define("_youMustChooseAtLeastOnePeriodAndOneStudent", "Vous devez choisir au moins une période et un élève");
 ?>
