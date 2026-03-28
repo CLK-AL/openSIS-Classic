@@ -40,6 +40,8 @@ define('grades', 'grades');
 define('attendance', 'attendance');
 define('messaging', 'messaging');
 define('tools', 'tools');
+define('library', 'library');
+define('inventory', 'inventory');
 
 if (isset($_REQUEST['year_id']))
     $_REQUEST['year_id'] = sqlSecurityFilter($_REQUEST['year_id'], 'no');
@@ -617,6 +619,7 @@ $menu_icons = array(
     "messaging" => "icon-envelop5",
     "tools" => "icon-hammer-wrench",
     "library" => "icon-book3",
+    "inventory" => "icon-box",
     "billing" => "icon-calculator2",
     "discipline" => "icon-hammer2"
 );

@@ -73,6 +73,8 @@ if (!defined('CONFIG_INC')) {
         'Billing' => true,
         'EasyCom' => true,
         'Library' => true,
+        'library' => true,
+        'inventory' => true,
         'messaging' => true,
         'tools' => true,
     );
