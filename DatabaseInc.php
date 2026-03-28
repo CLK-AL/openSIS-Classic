@@ -25,17 +25,23 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #***************************************************************************************
-// Establish MySQL DB connection.
+// Establish DB connection (MySQL or SQLite).
 include 'RedirectRootInc.php';
 include 'ConnectionClass.php';
 require_once "functions/PragRepFnc.php";
+require_once dirname(__FILE__) . "/SqliteAdapter.php";
 function db_start()
 {
     global $DatabaseServer, $DatabaseUsername, $DatabasePassword, $DatabaseName, $DatabasePort, $DatabaseType, $connection;
-    $connection = new ConnectDBOpensis();
-    switch ($DatabaseType) {
-        case 'mysqli':
 
+    switch ($DatabaseType) {
+        case 'sqlite':
+            $connection = new SqliteConnection($DatabaseName);
+            return $connection;
+
+        case 'mysqli':
+        default:
+            $connection = new ConnectDBOpensis();
             if ($connection->auto_init == true) {
                 $connection = $connection->init($DatabaseServer, $DatabaseUsername, $DatabasePassword, $DatabaseName);
                 mysqli_set_charset($connection, "utf8");
@@ -57,10 +63,13 @@ function db_start()
 
 
 ##### Connection help #####
-if (!empty($DatabaseServer) && !empty($DatabaseUsername) && !empty($DatabaseName))
+if (isset($DatabaseType) && $DatabaseType === 'sqlite' && !empty($DatabaseName)) {
+    $connection = new SqliteConnection($DatabaseName);
+} elseif (!empty($DatabaseServer) && !empty($DatabaseUsername) && !empty($DatabaseName)) {
     $connection = mysqli_connect($DatabaseServer, $DatabaseUsername, $DatabasePassword, $DatabaseName);
+}
 
-    if ($connection) {
+    if ($connection && !(isset($DatabaseType) && $DatabaseType === 'sqlite')) {
         $result = $connection->query("SHOW VARIABLES WHERE VARIABLE_NAME = 'event_scheduler'");
         if($result && mysqli_num_rows($result) === 0){
             if ($result && mysqli_num_rows($result) > 0) {
@@ -114,9 +123,19 @@ function DBQuery($sql)
     } else {
         $userId = '';
     }
-    if (!empty($userId))
+    if (!empty($userId) && $DatabaseType !== 'sqlite')
         $connection->query("set @userId= $userId;");
     switch ($DatabaseType) {
+        case 'sqlite':
+            $sql = str_replace('&amp;', "", $sql);
+            $sql = str_replace('&quot', "", $sql);
+            $sql = str_replace('&#039;', "", $sql);
+            $sql = str_replace('&lt;', "", $sql);
+            $sql = str_replace('&gt;', "", $sql);
+            $sql = par_rep("/([,\(=])[\r\n\t ]*''/", '\\1NULL', $sql);
+            $result = $connection->query($sql);
+            break;
+
         case 'mysqli':
 
             $sql = str_replace('&amp;', "", $sql);
@@ -277,6 +296,12 @@ function db_fetch_row($result)
     $return = null;
 
     switch ($DatabaseType) {
+        case 'sqlite':
+            if ($result instanceof SqliteResultSet) {
+                $return = $result->fetch_assoc();
+            }
+            break;
+
         case 'mysqli':
             if ($result instanceof mysqli_result) {
                 $return = $result->fetch_assoc();
@@ -298,7 +323,9 @@ function db_seq_nextval($seqname)
 {
     global $DatabaseType;
 
-    if ($DatabaseType == 'mysqli') {
+    if ($DatabaseType == 'sqlite') {
+        $seq = "NULL"; // SQLite uses AUTOINCREMENT
+    } elseif ($DatabaseType == 'mysqli') {
         $seq = "fn_" . strtolower($seqname) . "()";
     }
 
@@ -348,10 +375,20 @@ function db_properties($table)
     global $DatabaseType, $DatabaseUsername;
 
     switch ($DatabaseType) {
+        case 'sqlite':
+            $result = DBQuery("PRAGMA table_info($table)");
+            while ($row = db_fetch_row($result)) {
+                $field = strtoupper($row['NAME']);
+                $type = strtoupper($row['TYPE'] ?? 'TEXT');
+                $properties[$field]['TYPE'] = $type;
+                $properties[$field]['SIZE'] = 255;
+                $properties[$field]['NULL'] = ($row['NOTNULL'] == '0') ? 'Y' : 'N';
+            }
+            break;
+
         case 'mysqli':
             $result = DBQuery("SHOW COLUMNS FROM $table");
             while ($row = db_fetch_row($result)) {
-                //$properties[strtoupper($row['FIELD'])]['TYPE'] = strtoupper($row['TYPE'], strpos($row['TYPE'], '('));
                 $properties[strtoupper($row['FIELD'])]['TYPE'] = strpos(strtoupper($row['TYPE']), '(');
                 if (!$pos = strpos($row['TYPE'], ',')) {
                     $pos = strpos($row['TYPE'], ')');
