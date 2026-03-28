@@ -44,6 +44,12 @@ class LangDirectionTest extends TestCase
         $this->assertEquals('rtl', langDirection());
     }
 
+    public function testReturnsRtlForHebrew(): void
+    {
+        $_SESSION['language'] = 'he';
+        $this->assertEquals('rtl', langDirection());
+    }
+
     public function testReturnsLtrWhenNoSessionLanguage(): void
     {
         unset($_SESSION['language']);

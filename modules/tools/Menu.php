@@ -38,5 +38,6 @@ $menu['tools']['admin'] = array(
                                 'tools/Reports.php?func=Basic'=>_atAGlance,
                                'tools/Reports.php?func=Ins_r'=>_instituteReports,
                                'tools/Reports.php?func=Ins_cf'=>_instituteCustomFieldReports,
+                               'tools/TranslationManager.php'=>'Translation Manager',
     );
 ?>
