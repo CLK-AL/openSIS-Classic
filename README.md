@@ -22,8 +22,8 @@ openSIS is a Student Information System for K-12, trade schools, and higher educ
 | **Finance** | Collections and payments from parents (8 categories: Field Trip, Birthday, Lab Fee, Book Fee, etc.), receipt tracking, finance reports |
 | **vCard/iCal** | Export students/staff/parents as .vcf contacts; export events/school days/marking periods as .ics; import .vcf and .ics files |
 | **DB Migration** | `migrate-db.php` — CLI tool to migrate between SQLite, MySQL, and PostgreSQL with automatic type mapping |
-| **PHPUnit Tests** | 392 tests / 768 assertions: security, input validation, date/time, UI generation, DB-dependent via TSV mock and SQLite, full donation-classroom E2E simulation |
-| **Playwright E2E** | 113 browser tests across 14 spec files covering all 11 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
+| **PHPUnit Tests** | 683 tests / 1314 assertions: security, input validation, date/time, UI generation, DB-dependent via TSV mock and SQLite, full donation-classroom E2E simulation |
+| **Playwright E2E** | 177 browser tests across 21 spec files covering all 11 modules: auth, navigation, RTL, school setup, students, users, scheduling, grades, attendance, messaging, tools, eligibility |
 | **Architecture Docs** | 16 PlantUML diagrams: module workflows per role, authentication flow, data model, role-access matrix, test coverage map |
 | **Bug Fixes** | Missing closing quote on `dir="ltr"` (Warehouse.php), uninitialized `$langCode` (language.php), missing semicolon (supportedLanguages.php), debug var_dumps removed (LoginInc.php), `langDirection()` null-safety |
 
@@ -93,7 +93,7 @@ Edit `WhiteLabelInc.php` to change app name, title, and footer.
 
 ## Testing
 
-### PHPUnit (392 tests)
+### PHPUnit (683 tests)
 
 ```bash
 composer install
@@ -102,7 +102,7 @@ composer install
 ./vendor/bin/phpunit --testsuite Integration  # integration only
 ```
 
-### Playwright E2E (113 tests)
+### Playwright E2E (177 tests)
 
 ```bash
 npm install
@@ -153,7 +153,7 @@ openSIS-Classic/
 │   └── css/rtl.css                   # RTL stylesheet
 ├── docs/
 │   └── diagrams/*.puml               # 16 PlantUML diagrams
-├── e2e/                              # 113 Playwright E2E tests
+├── e2e/                              # 177 Playwright E2E tests
 │   ├── fixtures.ts                   # Login/navigate helpers
 │   ├── auth.spec.ts                  # Authentication tests
 │   ├── rtl.spec.ts                   # RTL tests
@@ -172,15 +172,15 @@ openSIS-Classic/
 ├── tests/
 │   ├── bootstrap.php                 # Test setup
 │   ├── TsvMock.php                   # TSV-based DB mock
-│   ├── Unit/                         # 19 unit test suites
-│   └── Integration/                  # 6 integration test suites
+│   ├── Unit/                         # 30 unit test suites
+│   └── Integration/                  # 7 integration test suites
 ├── bootstrap-upgrade.md              # Bootstrap 3→5 upgrade plan
 └── tests.md                          # Full test documentation
 ```
 
 ## Other Documentation
 
-- [tests.md](tests.md) — Full test suite documentation (392 tests)
+- [tests.md](tests.md) — Full test suite documentation (683 tests)
 - [bootstrap-upgrade.md](bootstrap-upgrade.md) — Bootstrap 3.3.5 → 5.x upgrade plan
 - [assets/branding/README.md](assets/branding/README.md) — White-label instructions
 

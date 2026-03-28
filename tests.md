@@ -2,7 +2,7 @@
 
 ## Overview
 
-PHPUnit 11 test suite with **392 tests** and **768 assertions**, plus **113 Playwright E2E browser tests**.
+PHPUnit 11 test suite with **683 tests** and **1314 assertions**, plus **177 Playwright E2E browser tests**.
 
 ### Requirements
 
@@ -45,7 +45,7 @@ composer install
 tests/
 ├── bootstrap.php                              # Autoloader, session init, shared includes
 ├── TsvMock.php                                # TSV-based DB mock infrastructure
-├── Unit/                                      # Isolated function-level tests (307 tests)
+├── Unit/                                      # Isolated function-level tests (598 tests)
 │   ├── PasswordHashTest.php                   #   9 tests
 │   ├── CSRFSecurityTest.php                   #  11 tests
 │   ├── SqlSecurityFilterTest.php              #  22 tests
@@ -81,7 +81,7 @@ tests/
     ├── DBGetWorkflowTest.php                  #  12 tests (TSV mock)
     └── DonationClassroomTest.php              #  20 tests (SQLite E2E)
 
-e2e/                                           # Playwright E2E browser tests (113 tests)
+e2e/                                           # Playwright E2E browser tests (177 tests)
 ├── fixtures.ts                                # Login/navigate helpers
 ├── auth.spec.ts                               #  10 tests
 ├── navigation.spec.ts                         #   4 tests
