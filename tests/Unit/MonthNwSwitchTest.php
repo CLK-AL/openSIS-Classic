@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 // MonthNwSwitchFnc.php already loaded in bootstrap
 
 class MonthNwSwitchTest extends TestCase
 {
-    /**
-     * @dataProvider monthNumToCharProvider
-     */
+    #[DataProvider('monthNumToCharProvider')]
     public function testNumToChar(string $num, string $expected): void
     {
         $this->assertEquals($expected, MonthNWSwitch($num, 'tochar'));
@@ -25,9 +24,7 @@ class MonthNwSwitchTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider monthCharToNumProvider
-     */
+    #[DataProvider('monthCharToNumProvider')]
     public function testCharToNum(string $char, string $expected): void
     {
         $this->assertEquals($expected, MonthNWSwitch($char, 'tonum'));
