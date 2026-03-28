@@ -67,15 +67,21 @@ package "Integration Tests" <<Rectangle>> #Gold {
     rectangle "DateWorkflow\nMonth conv + Time format" as intdate #90EE90
 }
 
-package "DB-Dependent (not unit testable)" <<Rectangle>> #WhiteSmoke {
-    rectangle "DbGetFnc" as dbget #FFFFE0
-    rectangle "UserFnc" as userfnc #FFFFE0
+package "DB-Dependent (TSV Mock)" <<Rectangle>> #LightGreen {
+    rectangle "DbGetFnc\nDBGet + db_fetch_row" as dbget #90EE90
+    rectangle "UserFnc\nUser / Preferences / StaffCategory" as userfnc #90EE90
+    rectangle "AllowEditFnc\nAllowEdit role-based permissions" as allow #90EE90
+    rectangle "ConfigFnc\nConfig()" as configfnc #90EE90
+    rectangle "DeCodedsFnc\nDeCodeds / cleanParamMod" as decodeds #90EE90
+    rectangle "TsvMock\nTsvResultSet (test infra)" as tsvmock #90EE90
+}
+
+package "DB-Dependent (untestable)" <<Rectangle>> #WhiteSmoke {
     rectangle "SaveDataFnc" as savedata #FFFFE0
     rectangle "GetStuListFnc" as stulist #FFFFE0
     rectangle "SearchFnc" as search #FFFFE0
     rectangle "ListOutputFnc" as listout #FFFFE0
     rectangle "InputsFnc" as inputs #FFFFE0
-    rectangle "AllowEditFnc" as allow #FFFFE0
     rectangle "AttendanceFnc" as attfnc #FFFFE0
     rectangle "MakeLetterGradeFnc" as mlg #FFFFE0
     rectangle "CustomFieldsFnc" as cf #FFFFE0
