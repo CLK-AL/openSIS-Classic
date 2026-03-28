@@ -387,7 +387,7 @@ if(langDirection()=='rtl') { $dir="rtl"; }else{ $dir="ltr"; }
 
                     <div class="panel-heading">
                         <div class="logo">
-                            <img src="assets/images/opensis_logo.png" alt="openSIS" />
+                            <img src="<?php echo WhiteLabel('logo_login'); ?>" alt="<?php echo WhiteLabel('app_name'); ?>" />
                         </div>
                     </div>
 

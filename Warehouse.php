@@ -32,6 +32,7 @@ if (!defined('WAREHOUSE_PHP')) {
 
     require_once($staticpath . "ConfigInc.php");
     require_once("DatabaseInc.php");
+    require_once($staticpath . "WhiteLabelInc.php");
 
     //Create Default Year Picture Folder
     // if (!file_exists($StudentPicturesPath)) {
@@ -70,7 +71,7 @@ if (!defined('WAREHOUSE_PHP')) {
             case 'header':
                 $langCode = isset($_SESSION['language']) ? $_SESSION['language'] : 'en';
                 echo "<!DOCTYPE html><html lang=\"".$langCode."\" ".((langDirection()=='rtl')?'dir="rtl"':'dir="ltr"')."><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no\">";
-                echo "<title>" . Config('TITLE') . "</title><link rel=\"shortcut icon\" href=\"favicon.ico\">";
+                echo "<title>" . Config('TITLE') . "</title><link rel=\"shortcut icon\" href=\"" . WhiteLabel('favicon') . "\">";
                 //echo '<link href="assets/css/export_print.css" rel="stylesheet" type="text/css">';
 
                 if (basename($_SERVER['PHP_SELF']) != 'index.php' && basename($_SERVER['PHP_SELF']) != 'Ajax.php')

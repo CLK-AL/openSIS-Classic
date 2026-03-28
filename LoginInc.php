@@ -95,7 +95,7 @@ require_once('functions/langFnc.php');
 
                 <div class="panel-heading">
                     <div class="logo">
-                        <img src="assets/images/opensis_logo.png" alt="openSIS" />
+                        <img src="<?php echo WhiteLabel('logo_login'); ?>" alt="<?php echo WhiteLabel('app_name'); ?>" />
                     </div>                    
                     <h3><?= _studentInformationSystem ?></h3>
                 </div>

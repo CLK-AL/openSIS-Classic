@@ -626,7 +626,7 @@ if ($_SESSION['PageAccess']!= 'stu_pass' && $_SESSION['PageAccess']!= 'stf_pass'
 
                     <div class="panel-heading">
                         <div class="logo">
-                            <img src="assets/images/opensis_logo.png" alt="openSIS" />
+                            <?php @include_once 'WhiteLabelInc.php'; ?><img src="<?php echo function_exists('WhiteLabel') ? WhiteLabel('logo_login') : 'assets/images/opensis_logo.png'; ?>" alt="openSIS" />
                         </div>                    
                         <h3>Forgot Password</h3>
                     </div>
