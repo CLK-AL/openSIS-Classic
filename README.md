@@ -59,13 +59,20 @@ $DatabaseType = 'sqlite';
 $DatabaseName = __DIR__ . '/data/opensis.db';
 ```
 
+### Windows Install
+
+See [INSTALL-WINDOWS.md](INSTALL-WINDOWS.md) for detailed instructions using:
+- **XAMPP** (Apache Friends) — recommended for most users
+- **Bitnami WAMP Stack** — one-click installer
+- **Manual** — PHP + MySQL + Apache on Windows
+
 ## Requirements
 
-| Component | Docker | Local |
-|-----------|--------|-------|
-| PHP | 8.3 (included) | 8.x + mysqli, gd, zip, intl, mbstring |
-| Database | MySQL 8.0 (included) | MySQL 5.7+ / MariaDB 10.4+ / SQLite 3 |
-| Web Server | Apache (included) | Apache 2.4+ or PHP built-in server |
+| Component | Docker | Linux | Windows |
+|-----------|--------|-------|---------|
+| PHP | 8.3 (included) | 8.x + mysqli, gd, zip, intl, mbstring | XAMPP 8.x or Bitnami |
+| Database | MySQL 8.0 (included) | MySQL 5.7+ / MariaDB 10.4+ / SQLite 3 | MySQL (included in XAMPP/Bitnami) |
+| Web Server | Apache (included) | Apache 2.4+ or PHP built-in server | Apache (included in XAMPP/Bitnami) |
 
 ## Supported Languages
 
